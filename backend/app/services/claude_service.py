@@ -5,6 +5,11 @@ from app.config import get_settings
 from app.demo.sample_analysis import sample_analyses
 from app.demo.sample_games import sample_games
 from app.ai.prompts.content_analysis import SYSTEM_PROMPT, build_content_analysis_prompt
+from app.ai.prompts.game_design import (
+    SYSTEM_PROMPT as GAME_SYSTEM_PROMPT,
+    build_game_design_prompt,
+)
+from app.services.game_validator import normalize_game_specification
 from fastapi import HTTPException
 
 class ClaudeService:
@@ -64,14 +69,35 @@ class ClaudeService:
             print(f"[ClaudeService Error] {str(e)} - falling back to demo analysis")
             return sample_analyses[0]
 
-    def generate_game(self, analysis_data: dict, options: dict = None) -> dict:
-        if self.settings.demo_mode or not self.client:
-            if analysis_data.get("language") == "en":
-                return sample_games[1]
-            return sample_games[0]
-
-        # Live game generation implemented in Phase 4
+    def _demo_game_for(self, analysis_data: dict) -> dict:
+        if (analysis_data or {}).get("language") == "en":
+            return sample_games[1]
         return sample_games[0]
+
+    def generate_game(self, analysis_data: dict, options: dict = None) -> dict:
+        """Generate a playable game specification from an analyzed lesson.
+
+        Uses Claude when a key is configured and demo mode is off; otherwise
+        (and on any failure) falls back to a rich demo game so the flow never
+        breaks for the end user.
+        """
+        if self.settings.demo_mode or not self.client:
+            return self._demo_game_for(analysis_data)
+
+        prompt = build_game_design_prompt(analysis_data, options or {})
+        try:
+            response = self.client.messages.create(
+                model=self.settings.claude_model,
+                max_tokens=self.settings.claude_max_tokens,
+                system=GAME_SYSTEM_PROMPT,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            content = response.content[0].text
+            raw_spec = self._extract_json(content)
+            return normalize_game_specification(raw_spec, analysis_data, options or {})
+        except Exception as e:
+            print(f"[ClaudeService Error] generate_game failed: {str(e)} - falling back to demo game")
+            return self._demo_game_for(analysis_data)
 
     def generate_practice(self, context: dict, prompt: str) -> dict:
         return sample_games[0]
