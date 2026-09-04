@@ -333,4 +333,253 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get min15 => '15 Min';
+
+  @override
+  String get welcomeBack => 'Welcome back!';
+
+  @override
+  String get signInSubtitle =>
+      'Sign in to continue your child\'s learning journey';
+
+  @override
+  String get dontHaveAccount => 'Don\'t have an account?';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account?';
+
+  @override
+  String get fullName => 'Full Name';
+
+  @override
+  String get enterEmail => 'Enter your email';
+
+  @override
+  String get enterPassword => 'Enter your password';
+
+  @override
+  String get enterName => 'Enter your name';
+
+  @override
+  String get pleaseEnterEmail => 'Please enter your email';
+
+  @override
+  String get invalidEmail => 'Please enter a valid email';
+
+  @override
+  String get pleaseEnterPassword => 'Please enter your password';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 6 characters';
+
+  @override
+  String get pleaseEnterName => 'Please enter your name';
+
+  @override
+  String get loginFailed => 'Login failed';
+
+  @override
+  String get registerFailed => 'Registration failed';
+
+  @override
+  String get createYourAccount => 'Create your account';
+
+  @override
+  String get registerSubtitle => 'Start turning lessons into adventures';
+
+  @override
+  String welcomeUser(String name) {
+    return 'Welcome, $name';
+  }
+
+  @override
+  String heyChild(String name) {
+    return 'Hey $name!';
+  }
+
+  @override
+  String get readyForQuest => 'Ready for today\'s quest?';
+
+  @override
+  String get activeMission => 'Active Mission';
+
+  @override
+  String get startMissionNow => 'Start Mission Now';
+
+  @override
+  String get moreMissions => 'More Missions';
+
+  @override
+  String get viewAll => 'View All';
+
+  @override
+  String get childrenProfiles => 'Children Profiles';
+
+  @override
+  String get noChildrenYet => 'No child profiles added yet';
+
+  @override
+  String get addChildDesc => 'Add your child to start creating custom games';
+
+  @override
+  String get addFirstChild => 'Add First Child';
+
+  @override
+  String get uploadNewLesson => 'Upload New Lesson';
+
+  @override
+  String get uploadHomeSubtitle =>
+      'Upload a photo or PDF to generate an interactive mission';
+
+  @override
+  String get childMode => 'Child Mode';
+
+  @override
+  String get parentZone => 'Parent Zone';
+
+  @override
+  String ageLabel(int age) {
+    return 'Age $age';
+  }
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get upload => 'Upload';
+
+  @override
+  String get missions => 'Missions';
+
+  @override
+  String get games => 'Games';
+
+  @override
+  String get hero => 'Hero';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get arabic => 'العربية';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get switchLanguage => 'Switch Language';
+
+  @override
+  String get explorer => 'Explorer';
+
+  @override
+  String get parent => 'Parent';
+
+  @override
+  String get settingsAndProfile => 'Settings & Profile';
+
+  @override
+  String get appPreferences => 'App Preferences';
+
+  @override
+  String get studyReminders => 'Study Reminders & Streaks';
+
+  @override
+  String get studyRemindersDesc => 'Notify when a streak is at risk';
+
+  @override
+  String get offlineCache => 'Offline Games Cache';
+
+  @override
+  String get offlineCacheDesc => 'Clear cached missions';
+
+  @override
+  String get clear => 'Clear';
+
+  @override
+  String get cacheCleared => 'Offline game cache cleared successfully.';
+
+  @override
+  String get modesNavigation => 'Modes & Navigation';
+
+  @override
+  String get switchToChildHub => 'Switch to Child Game Hub';
+
+  @override
+  String get switchToChildHubDesc => 'Open the gamified kid experience';
+
+  @override
+  String get logOut => 'Log Out';
+
+  @override
+  String get logoutConfirm => 'Are you sure you want to log out?';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get onboardTitle1 => 'Welcome to Misson';
+
+  @override
+  String get onboardDesc1 =>
+      'Transform your child\'s learning with AI-powered interactive missions.';
+
+  @override
+  String get onboardTitle2 => 'Personalized Learning';
+
+  @override
+  String get onboardDesc2 =>
+      'Generate custom games and exercises tailored to your child\'s needs.';
+
+  @override
+  String get onboardTitle3 => 'Track Progress';
+
+  @override
+  String get onboardDesc3 =>
+      'Monitor achievements and discover areas for improvement.';
+
+  @override
+  String get createChildProfile => 'Create Child Profile';
+
+  @override
+  String get createChildSubtitle =>
+      'Create your child\'s profile to get started';
+
+  @override
+  String get childNameLabel => 'Child\'s Name';
+
+  @override
+  String get enterChildName => 'Enter their name';
+
+  @override
+  String get ageHint => 'Enter their age';
+
+  @override
+  String get gradeLevel => 'Grade Level';
+
+  @override
+  String get completeSetup => 'Complete Setup';
+
+  @override
+  String get pleaseEnterAge => 'Please enter an age';
+
+  @override
+  String get invalidNumber => 'Please enter a valid number';
+
+  @override
+  String get failedCreateProfile => 'Failed to create profile';
 }

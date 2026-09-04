@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'config/routes.dart';
-import 'config/theme.dart';
+import 'config/locale_provider.dart';
+import 'theme/app_theme.dart';
+import 'l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Initialize Hive or other dependencies here
-  
+
+  // Init local storage (settings + cache live here).
+  await Hive.initFlutter();
+  final settingsBox = await Hive.openBox('app_settings');
+
   runApp(
-    const ProviderScope(
-      child: MissonApp(),
+    ProviderScope(
+      overrides: [
+        settingsBoxProvider.overrideWithValue(settingsBox),
+      ],
+      child: const MissonApp(),
     ),
   );
 }
@@ -22,21 +29,18 @@ class MissonApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
+    final locale = ref.watch(localeProvider);
+    final isArabic = locale.languageCode == 'ar';
 
     return MaterialApp.router(
-      title: 'Misson',
-      theme: AppTheme.light,
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.appName,
+      theme: AppTheme.lightTheme(context, isArabic: isArabic),
+      darkTheme: AppTheme.darkTheme(context, isArabic: isArabic),
+      themeMode: ThemeMode.light,
       routerConfig: router,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('ar'),
-        Locale('en'),
-      ],
-      locale: const Locale('ar'),
+      locale: locale,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
     );
   }

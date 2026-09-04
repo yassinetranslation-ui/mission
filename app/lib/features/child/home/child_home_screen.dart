@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/child_profile.dart';
 import '../../../models/game_specification.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
 import '../../../widgets/streak_badge.dart';
@@ -69,6 +71,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     if (_isLoading) {
       return const Scaffold(
@@ -76,7 +79,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
       );
     }
 
-    final childName = _activeChild?.name ?? 'Explorer';
+    final childName = _activeChild?.name ?? l.explorer;
     final currentStreak = _activeChild?.currentStreak ?? 1;
     final totalXp = _activeChild?.xpTotal ?? 150;
     final currentLevel = _activeChild?.currentLevel ?? 1;
@@ -96,7 +99,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
                   children: [
                     CircleAvatar(
                       radius: 26,
-                      backgroundColor: const Color(0xFFFF6B35),
+                      backgroundColor: AppColors.childPrimary,
                       child: Text(
                         childName.isNotEmpty ? childName[0].toUpperCase() : 'E',
                         style: const TextStyle(
@@ -112,13 +115,13 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hey $childName! 🚀',
+                            '${l.heyChild(childName)} 🚀',
                             style: theme.textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            'Ready for today\'s quest?',
+                            l.readyForQuest,
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                             ),
@@ -130,7 +133,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
                     const SizedBox(width: 8),
                     IconButton(
                       icon: const Icon(Icons.shield_outlined, color: Colors.grey),
-                      tooltip: 'Parent Zone',
+                      tooltip: l.parentZone,
                       onPressed: () => context.go('/parent'),
                     ),
                   ],
@@ -152,7 +155,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
 
                 // Featured Mission Banner
                 Text(
-                  '⭐ Active Mission',
+                  '⭐ ${l.activeMission}',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -221,7 +224,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
                       ),
                       const SizedBox(height: 20),
                       AppButton.game(
-                        label: '▶️ Start Mission Now',
+                        label: '▶️ ${l.startMissionNow}',
                         onPressed: () {
                           if (_availableGames.isNotEmpty) {
                             _launchMission(_availableGames.first);
@@ -242,14 +245,14 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '🎮 More Missions',
+                      '🎮 ${l.moreMissions}',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     TextButton(
                       onPressed: () => context.go('/child/games'),
-                      child: const Text('View All'),
+                      child: Text(l.viewAll),
                     ),
                   ],
                 ),

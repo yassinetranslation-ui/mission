@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'providers/auth_provider.dart';
+import '../../config/locale_provider.dart';
+import '../../l10n/app_localizations.dart';
+import '../../theme/app_colors.dart';
 import '../../widgets/app_button.dart';
 import '../../widgets/app_input.dart';
+import '../../widgets/language_toggle.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -26,22 +30,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Future<void> _login() async {
+    final l = AppLocalizations.of(context)!;
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
-    
+
     try {
       await ref.read(authProvider.notifier).login(
-        _emailController.text,
-        _passwordController.text,
-      );
+            _emailController.text.trim(),
+            _passwordController.text,
+          );
       if (mounted) {
         context.go('/');
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login failed: ${e.toString()}')),
+          SnackBar(content: Text('${l.loginFailed}: ${e.toString()}')),
         );
       }
     } finally {
@@ -54,9 +59,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+    final l = AppLocalizations.of(context)!;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -65,9 +70,35 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 48),
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: LanguageToggle(
+                    isArabic: ref.watch(localeProvider).languageCode == 'ar',
+                    onToggle: () => ref.read(localeProvider.notifier).toggle(),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Center(
+                  child: Container(
+                    width: 84,
+                    height: 84,
+                    decoration: BoxDecoration(
+                      gradient: AppColors.primaryGradient,
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primary.withValues(alpha: 0.35),
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: const Icon(Icons.auto_awesome, size: 44, color: Colors.white),
+                  ),
+                ),
+                const SizedBox(height: 28),
                 Text(
-                  'Welcome Back!',
+                  l.welcomeBack,
                   style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.primary,
@@ -76,61 +107,51 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Sign in to continue your child\'s learning journey',
+                  l.signInSubtitle,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 48),
+                const SizedBox(height: 40),
                 AppInput(
                   controller: _emailController,
-                  label: 'Email',
-                  hint: 'Enter your email',
+                  label: l.email,
+                  hint: l.enterEmail,
                   keyboardType: TextInputType.emailAddress,
                   prefixIcon: const Icon(Icons.email_outlined),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    if (!value.contains('@')) {
-                      return 'Please enter a valid email';
-                    }
+                    if (value == null || value.isEmpty) return l.pleaseEnterEmail;
+                    if (!value.contains('@')) return l.invalidEmail;
                     return null;
                   },
                 ),
                 const SizedBox(height: 16),
                 AppInput.password(
                   controller: _passwordController,
-                  label: 'Password',
-                  hint: 'Enter your password',
+                  label: l.password,
+                  hint: l.enterPassword,
                   prefixIcon: const Icon(Icons.lock_outline),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
+                    if (value == null || value.isEmpty) return l.pleaseEnterPassword;
+                    if (value.length < 6) return l.passwordTooShort;
                     return null;
                   },
                 ),
-                const SizedBox(height: 24),
-                if (_isLoading)
-                  const Center(child: CircularProgressIndicator())
-                else
-                  AppButton.primary(
-                    label: 'Login',
-                    onPressed: _login,
-                  ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 28),
+                AppButton.primary(
+                  label: l.login,
+                  isLoading: _isLoading,
+                  onPressed: _login,
+                ),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Don\'t have an account?'),
+                    Text(l.dontHaveAccount),
                     TextButton(
                       onPressed: () => context.push('/register'),
-                      child: const Text('Register'),
+                      child: Text(l.register),
                     ),
                   ],
                 ),

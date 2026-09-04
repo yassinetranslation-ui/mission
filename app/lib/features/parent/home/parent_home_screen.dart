@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../auth/providers/auth_provider.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/child_profile.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
 import '../../../widgets/streak_badge.dart';
@@ -46,21 +48,22 @@ class _ParentHomeScreenState extends ConsumerState<ParentHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
     final authRepo = ref.watch(authRepositoryProvider);
-    final parentName = authRepo.currentUser?.name ?? 'Parent';
+    final parentName = authRepo.currentUser?.name ?? l.parent;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome, $parentName'),
+        title: Text(l.welcomeUser(parentName)),
         actions: [
           IconButton(
             icon: const Icon(Icons.child_care),
-            tooltip: 'Child Mode',
+            tooltip: l.childMode,
             onPressed: () => context.go('/child'),
           ),
           IconButton(
             icon: const Icon(Icons.logout),
-            tooltip: 'Logout',
+            tooltip: l.logout,
             onPressed: () async {
               await ref.read(authProvider.notifier).logout();
               if (context.mounted) context.go('/login');
@@ -78,12 +81,7 @@ class _ParentHomeScreenState extends ConsumerState<ParentHomeScreen> {
             children: [
               // Hero Action Card: Turn Lesson Into Game
               AppCard(
-                gradient: LinearGradient(
-                  colors: [
-                    theme.colorScheme.primary,
-                    const Color(0xFF8B80F9),
-                  ],
-                ),
+                gradient: AppColors.primaryGradient,
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +106,7 @@ class _ParentHomeScreenState extends ConsumerState<ParentHomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Turn Any Lesson Into a Game',
+                                l.turnLessonIntoGame,
                                 style: theme.textTheme.titleLarge?.copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -116,7 +114,7 @@ class _ParentHomeScreenState extends ConsumerState<ParentHomeScreen> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'Upload a photo or PDF to generate an interactive mission',
+                                l.uploadHomeSubtitle,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: Colors.white.withValues(alpha: 0.9),
                                 ),
@@ -128,7 +126,7 @@ class _ParentHomeScreenState extends ConsumerState<ParentHomeScreen> {
                     ),
                     const SizedBox(height: 20),
                     AppButton.game(
-                      label: '🚀 Upload New Lesson',
+                      label: '🚀 ${l.uploadNewLesson}',
                       onPressed: () => context.go('/parent/upload'),
                     ),
                   ],
@@ -142,14 +140,14 @@ class _ParentHomeScreenState extends ConsumerState<ParentHomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Children Profiles',
+                    l.childrenProfiles,
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   TextButton.icon(
                     icon: const Icon(Icons.add, size: 18),
-                    label: const Text('Add Child'),
+                    label: Text(l.addChild),
                     onPressed: () async {
                       await context.push('/parent/children/add');
                       _loadChildren();
@@ -179,18 +177,18 @@ class _ParentHomeScreenState extends ConsumerState<ParentHomeScreen> {
                           color: theme.colorScheme.primary.withValues(alpha: 0.5),
                         ),
                         const SizedBox(height: 12),
-                        const Text(
-                          'No child profiles added yet',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Text(
+                          l.noChildrenYet,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 8),
-                        const Text(
-                          'Add your child to start creating custom games',
+                        Text(
+                          l.addChildDesc,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 16),
                         AppButton.primary(
-                          label: 'Add First Child',
+                          label: l.addFirstChild,
                           onPressed: () async {
                             await context.push('/parent/children/add');
                             _loadChildren();
@@ -238,7 +236,7 @@ class _ParentHomeScreenState extends ConsumerState<ParentHomeScreen> {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'Age ${child.age} • ${child.gradeLevel ?? "Level ${child.currentLevel}"}',
+                                  '${l.ageLabel(child.age)} • ${child.gradeLevel ?? "${l.level} ${child.currentLevel}"}',
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: theme.colorScheme.onSurfaceVariant,
                                   ),

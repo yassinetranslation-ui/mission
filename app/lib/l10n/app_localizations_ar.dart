@@ -333,4 +333,249 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get min15 => '15 دقيقة';
+
+  @override
+  String get welcomeBack => 'مرحباً بعودتك!';
+
+  @override
+  String get signInSubtitle => 'سجّل الدخول لمتابعة رحلة تعلّم طفلك';
+
+  @override
+  String get dontHaveAccount => 'ليس لديك حساب؟';
+
+  @override
+  String get alreadyHaveAccount => 'لديك حساب بالفعل؟';
+
+  @override
+  String get fullName => 'الاسم الكامل';
+
+  @override
+  String get enterEmail => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get enterPassword => 'أدخل كلمة المرور';
+
+  @override
+  String get enterName => 'أدخل اسمك';
+
+  @override
+  String get pleaseEnterEmail => 'من فضلك أدخل بريدك الإلكتروني';
+
+  @override
+  String get invalidEmail => 'من فضلك أدخل بريداً إلكترونياً صحيحاً';
+
+  @override
+  String get pleaseEnterPassword => 'من فضلك أدخل كلمة المرور';
+
+  @override
+  String get passwordTooShort =>
+      'يجب أن تتكوّن كلمة المرور من 6 أحرف على الأقل';
+
+  @override
+  String get pleaseEnterName => 'من فضلك أدخل اسمك';
+
+  @override
+  String get loginFailed => 'فشل تسجيل الدخول';
+
+  @override
+  String get registerFailed => 'فشل إنشاء الحساب';
+
+  @override
+  String get createYourAccount => 'أنشئ حسابك';
+
+  @override
+  String get registerSubtitle => 'ابدأ بتحويل الدروس إلى مغامرات';
+
+  @override
+  String welcomeUser(String name) {
+    return 'مرحباً، $name';
+  }
+
+  @override
+  String heyChild(String name) {
+    return 'أهلاً $name!';
+  }
+
+  @override
+  String get readyForQuest => 'مستعد لمهمة اليوم؟';
+
+  @override
+  String get activeMission => 'المهمة النشطة';
+
+  @override
+  String get startMissionNow => 'ابدأ المهمة الآن';
+
+  @override
+  String get moreMissions => 'المزيد من المهمات';
+
+  @override
+  String get viewAll => 'عرض الكل';
+
+  @override
+  String get childrenProfiles => 'ملفات الأبناء';
+
+  @override
+  String get noChildrenYet => 'لم تتم إضافة أي طفل بعد';
+
+  @override
+  String get addChildDesc => 'أضف طفلك لتبدأ في إنشاء ألعاب مخصّصة';
+
+  @override
+  String get addFirstChild => 'أضف أول طفل';
+
+  @override
+  String get uploadNewLesson => 'رفع درس جديد';
+
+  @override
+  String get uploadHomeSubtitle => 'ارفع صورة أو ملف PDF لإنشاء مهمة تفاعلية';
+
+  @override
+  String get childMode => 'وضع الطفل';
+
+  @override
+  String get parentZone => 'منطقة الأهل';
+
+  @override
+  String ageLabel(int age) {
+    return 'العمر $age';
+  }
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get upload => 'رفع';
+
+  @override
+  String get missions => 'المهمات';
+
+  @override
+  String get games => 'الألعاب';
+
+  @override
+  String get hero => 'البطل';
+
+  @override
+  String get profile => 'الملف';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get arabic => 'العربية';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get appearance => 'المظهر';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get about => 'حول التطبيق';
+
+  @override
+  String get version => 'الإصدار';
+
+  @override
+  String get switchLanguage => 'تبديل اللغة';
+
+  @override
+  String get explorer => 'المستكشف';
+
+  @override
+  String get parent => 'ولي الأمر';
+
+  @override
+  String get settingsAndProfile => 'الإعدادات والملف الشخصي';
+
+  @override
+  String get appPreferences => 'تفضيلات التطبيق';
+
+  @override
+  String get studyReminders => 'تذكيرات الدراسة والسلاسل';
+
+  @override
+  String get studyRemindersDesc => 'تنبيه عند خطر فقدان السلسلة';
+
+  @override
+  String get offlineCache => 'ذاكرة الألعاب دون اتصال';
+
+  @override
+  String get offlineCacheDesc => 'مسح المهمات المخزّنة';
+
+  @override
+  String get clear => 'مسح';
+
+  @override
+  String get cacheCleared => 'تم مسح ذاكرة الألعاب بنجاح.';
+
+  @override
+  String get modesNavigation => 'الأوضاع والتنقّل';
+
+  @override
+  String get switchToChildHub => 'التبديل إلى مركز ألعاب الطفل';
+
+  @override
+  String get switchToChildHubDesc => 'افتح تجربة الطفل المُلعّبة';
+
+  @override
+  String get logOut => 'تسجيل الخروج';
+
+  @override
+  String get logoutConfirm => 'هل أنت متأكد من تسجيل الخروج؟';
+
+  @override
+  String get back => 'رجوع';
+
+  @override
+  String get onboardTitle1 => 'أهلاً بك في مِشون';
+
+  @override
+  String get onboardDesc1 =>
+      'حوّل تعلّم طفلك عبر مهمات تفاعلية مدعومة بالذكاء الاصطناعي.';
+
+  @override
+  String get onboardTitle2 => 'تعلّم مخصّص';
+
+  @override
+  String get onboardDesc2 => 'أنشئ ألعابًا وتمارين مصمّمة حسب احتياجات طفلك.';
+
+  @override
+  String get onboardTitle3 => 'تابع التقدّم';
+
+  @override
+  String get onboardDesc3 => 'راقب الإنجازات واكتشف نقاط التحسين.';
+
+  @override
+  String get createChildProfile => 'إنشاء ملف الطفل';
+
+  @override
+  String get createChildSubtitle => 'أنشئ ملف طفلك لتبدأ';
+
+  @override
+  String get childNameLabel => 'اسم الطفل';
+
+  @override
+  String get enterChildName => 'أدخل اسمه';
+
+  @override
+  String get ageHint => 'أدخل عمره';
+
+  @override
+  String get gradeLevel => 'المرحلة الدراسية';
+
+  @override
+  String get completeSetup => 'إكمال الإعداد';
+
+  @override
+  String get pleaseEnterAge => 'من فضلك أدخل العمر';
+
+  @override
+  String get invalidNumber => 'من فضلك أدخل رقماً صحيحاً';
+
+  @override
+  String get failedCreateProfile => 'فشل إنشاء الملف';
 }

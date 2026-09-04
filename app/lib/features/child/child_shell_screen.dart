@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../l10n/app_localizations.dart';
+import '../../theme/app_colors.dart';
 
 class ChildShellScreen extends StatelessWidget {
   final Widget child;
@@ -35,33 +37,35 @@ class ChildShellScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedIndex = _calculateSelectedIndex(context);
+    final l = AppLocalizations.of(context)!;
+    const childColor = AppColors.childPrimary;
 
     return Scaffold(
       body: child,
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         onDestinationSelected: (index) => _onItemTapped(index, context),
-        indicatorColor: const Color(0xFFFF6B35).withValues(alpha: 0.2),
-        destinations: const [
+        indicatorColor: childColor.withValues(alpha: 0.2),
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.explore_outlined),
-            selectedIcon: Icon(Icons.explore, color: Color(0xFFFF6B35)),
-            label: 'Missions',
+            icon: const Icon(Icons.explore_outlined),
+            selectedIcon: const Icon(Icons.explore, color: childColor),
+            label: l.missions,
           ),
           NavigationDestination(
-            icon: Icon(Icons.sports_esports_outlined),
-            selectedIcon: Icon(Icons.sports_esports, color: Color(0xFFFF6B35)),
-            label: 'Games',
+            icon: const Icon(Icons.sports_esports_outlined),
+            selectedIcon: const Icon(Icons.sports_esports, color: childColor),
+            label: l.games,
           ),
           NavigationDestination(
-            icon: Icon(Icons.emoji_events_outlined),
-            selectedIcon: Icon(Icons.emoji_events, color: Color(0xFFFF6B35)),
-            label: 'Badges',
+            icon: const Icon(Icons.emoji_events_outlined),
+            selectedIcon: const Icon(Icons.emoji_events, color: childColor),
+            label: l.badges,
           ),
           NavigationDestination(
-            icon: Icon(Icons.person_outline),
-            selectedIcon: Icon(Icons.person, color: Color(0xFFFF6B35)),
-            label: 'Hero',
+            icon: const Icon(Icons.person_outline),
+            selectedIcon: const Icon(Icons.person, color: childColor),
+            label: l.hero,
           ),
         ],
       ),

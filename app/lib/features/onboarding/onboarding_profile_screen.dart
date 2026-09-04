@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../config/dependency_injection.dart';
+import '../../l10n/app_localizations.dart';
 import '../../services/child_service.dart';
 import '../../widgets/app_button.dart';
 import '../../widgets/app_input.dart';
@@ -61,8 +62,9 @@ class _OnboardingProfileScreenState extends ConsumerState<OnboardingProfileScree
       }
     } catch (e) {
       if (mounted) {
+        final l = AppLocalizations.of(context)!;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to create profile: $e')),
+          SnackBar(content: Text('${l.failedCreateProfile}: $e')),
         );
       }
     } finally {
@@ -75,9 +77,10 @@ class _OnboardingProfileScreenState extends ConsumerState<OnboardingProfileScree
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Create Child Profile')),
+      appBar: AppBar(title: Text(l.createChildProfile)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -94,7 +97,7 @@ class _OnboardingProfileScreenState extends ConsumerState<OnboardingProfileScree
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'Who is learning today?',
+                  l.whoWillBeLearning,
                   style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.primary,
@@ -103,7 +106,7 @@ class _OnboardingProfileScreenState extends ConsumerState<OnboardingProfileScree
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Create your child\'s profile to get started',
+                  l.createChildSubtitle,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -112,12 +115,12 @@ class _OnboardingProfileScreenState extends ConsumerState<OnboardingProfileScree
                 const SizedBox(height: 32),
                 AppInput(
                   controller: _nameController,
-                  label: 'Child\'s Name',
-                  hint: 'Enter their name',
+                  label: l.childNameLabel,
+                  hint: l.enterChildName,
                   prefixIcon: const Icon(Icons.person_outline),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a name';
+                      return l.pleaseEnterName;
                     }
                     return null;
                   },
@@ -125,16 +128,16 @@ class _OnboardingProfileScreenState extends ConsumerState<OnboardingProfileScree
                 const SizedBox(height: 16),
                 AppInput(
                   controller: _ageController,
-                  label: 'Age',
-                  hint: 'Enter their age',
+                  label: l.childAge,
+                  hint: l.ageHint,
                   keyboardType: TextInputType.number,
                   prefixIcon: const Icon(Icons.cake_outlined),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter an age';
+                      return l.pleaseEnterAge;
                     }
                     if (int.tryParse(value) == null) {
-                      return 'Please enter a valid number';
+                      return l.invalidNumber;
                     }
                     return null;
                   },
@@ -143,7 +146,7 @@ class _OnboardingProfileScreenState extends ConsumerState<OnboardingProfileScree
                 DropdownButtonFormField<String>(
                   initialValue: _selectedGrade,
                   decoration: InputDecoration(
-                    labelText: 'Grade Level',
+                    labelText: l.gradeLevel,
                     prefixIcon: const Icon(Icons.school_outlined),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -164,13 +167,11 @@ class _OnboardingProfileScreenState extends ConsumerState<OnboardingProfileScree
                   },
                 ),
                 const SizedBox(height: 32),
-                if (_isLoading)
-                  const Center(child: CircularProgressIndicator())
-                else
-                  AppButton.primary(
-                    label: 'Complete Setup',
-                    onPressed: _createProfile,
-                  ),
+                AppButton.primary(
+                  label: l.completeSetup,
+                  isLoading: _isLoading,
+                  onPressed: _createProfile,
+                ),
               ],
             ),
           ),

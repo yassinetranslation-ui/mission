@@ -745,6 +745,480 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'15 Min'**
   String get min15;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back!'**
+  String get welcomeBack;
+
+  /// No description provided for @signInSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue your child\'s learning journey'**
+  String get signInSubtitle;
+
+  /// No description provided for @dontHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get dontHaveAccount;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get alreadyHaveAccount;
+
+  /// No description provided for @fullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get fullName;
+
+  /// No description provided for @enterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enterEmail;
+
+  /// No description provided for @enterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enterPassword;
+
+  /// No description provided for @enterName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get enterName;
+
+  /// No description provided for @pleaseEnterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get pleaseEnterEmail;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email'**
+  String get invalidEmail;
+
+  /// No description provided for @pleaseEnterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get pleaseEnterPassword;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get passwordTooShort;
+
+  /// No description provided for @pleaseEnterName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your name'**
+  String get pleaseEnterName;
+
+  /// No description provided for @loginFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Login failed'**
+  String get loginFailed;
+
+  /// No description provided for @registerFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration failed'**
+  String get registerFailed;
+
+  /// No description provided for @createYourAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get createYourAccount;
+
+  /// No description provided for @registerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start turning lessons into adventures'**
+  String get registerSubtitle;
+
+  /// No description provided for @welcomeUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome, {name}'**
+  String welcomeUser(String name);
+
+  /// No description provided for @heyChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey {name}!'**
+  String heyChild(String name);
+
+  /// No description provided for @readyForQuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for today\'s quest?'**
+  String get readyForQuest;
+
+  /// No description provided for @activeMission.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Mission'**
+  String get activeMission;
+
+  /// No description provided for @startMissionNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Mission Now'**
+  String get startMissionNow;
+
+  /// No description provided for @moreMissions.
+  ///
+  /// In en, this message translates to:
+  /// **'More Missions'**
+  String get moreMissions;
+
+  /// No description provided for @viewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'View All'**
+  String get viewAll;
+
+  /// No description provided for @childrenProfiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Children Profiles'**
+  String get childrenProfiles;
+
+  /// No description provided for @noChildrenYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No child profiles added yet'**
+  String get noChildrenYet;
+
+  /// No description provided for @addChildDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your child to start creating custom games'**
+  String get addChildDesc;
+
+  /// No description provided for @addFirstChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Add First Child'**
+  String get addFirstChild;
+
+  /// No description provided for @uploadNewLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload New Lesson'**
+  String get uploadNewLesson;
+
+  /// No description provided for @uploadHomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload a photo or PDF to generate an interactive mission'**
+  String get uploadHomeSubtitle;
+
+  /// No description provided for @childMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Child Mode'**
+  String get childMode;
+
+  /// No description provided for @parentZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent Zone'**
+  String get parentZone;
+
+  /// No description provided for @ageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Age {age}'**
+  String ageLabel(int age);
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @upload.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload'**
+  String get upload;
+
+  /// No description provided for @missions.
+  ///
+  /// In en, this message translates to:
+  /// **'Missions'**
+  String get missions;
+
+  /// No description provided for @games.
+  ///
+  /// In en, this message translates to:
+  /// **'Games'**
+  String get games;
+
+  /// No description provided for @hero.
+  ///
+  /// In en, this message translates to:
+  /// **'Hero'**
+  String get hero;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'العربية'**
+  String get arabic;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @appearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearance;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @version.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get version;
+
+  /// No description provided for @switchLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch Language'**
+  String get switchLanguage;
+
+  /// No description provided for @explorer.
+  ///
+  /// In en, this message translates to:
+  /// **'Explorer'**
+  String get explorer;
+
+  /// No description provided for @parent.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent'**
+  String get parent;
+
+  /// No description provided for @settingsAndProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings & Profile'**
+  String get settingsAndProfile;
+
+  /// No description provided for @appPreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'App Preferences'**
+  String get appPreferences;
+
+  /// No description provided for @studyReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Reminders & Streaks'**
+  String get studyReminders;
+
+  /// No description provided for @studyRemindersDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify when a streak is at risk'**
+  String get studyRemindersDesc;
+
+  /// No description provided for @offlineCache.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline Games Cache'**
+  String get offlineCache;
+
+  /// No description provided for @offlineCacheDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear cached missions'**
+  String get offlineCacheDesc;
+
+  /// No description provided for @clear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clear;
+
+  /// No description provided for @cacheCleared.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline game cache cleared successfully.'**
+  String get cacheCleared;
+
+  /// No description provided for @modesNavigation.
+  ///
+  /// In en, this message translates to:
+  /// **'Modes & Navigation'**
+  String get modesNavigation;
+
+  /// No description provided for @switchToChildHub.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to Child Game Hub'**
+  String get switchToChildHub;
+
+  /// No description provided for @switchToChildHubDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the gamified kid experience'**
+  String get switchToChildHubDesc;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get logOut;
+
+  /// No description provided for @logoutConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get logoutConfirm;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @onboardTitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Misson'**
+  String get onboardTitle1;
+
+  /// No description provided for @onboardDesc1.
+  ///
+  /// In en, this message translates to:
+  /// **'Transform your child\'s learning with AI-powered interactive missions.'**
+  String get onboardDesc1;
+
+  /// No description provided for @onboardTitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'Personalized Learning'**
+  String get onboardTitle2;
+
+  /// No description provided for @onboardDesc2.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate custom games and exercises tailored to your child\'s needs.'**
+  String get onboardDesc2;
+
+  /// No description provided for @onboardTitle3.
+  ///
+  /// In en, this message translates to:
+  /// **'Track Progress'**
+  String get onboardTitle3;
+
+  /// No description provided for @onboardDesc3.
+  ///
+  /// In en, this message translates to:
+  /// **'Monitor achievements and discover areas for improvement.'**
+  String get onboardDesc3;
+
+  /// No description provided for @createChildProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Child Profile'**
+  String get createChildProfile;
+
+  /// No description provided for @createChildSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your child\'s profile to get started'**
+  String get createChildSubtitle;
+
+  /// No description provided for @childNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Child\'s Name'**
+  String get childNameLabel;
+
+  /// No description provided for @enterChildName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter their name'**
+  String get enterChildName;
+
+  /// No description provided for @ageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter their age'**
+  String get ageHint;
+
+  /// No description provided for @gradeLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade Level'**
+  String get gradeLevel;
+
+  /// No description provided for @completeSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Setup'**
+  String get completeSetup;
+
+  /// No description provided for @pleaseEnterAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter an age'**
+  String get pleaseEnterAge;
+
+  /// No description provided for @invalidNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid number'**
+  String get invalidNumber;
+
+  /// No description provided for @failedCreateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create profile'**
+  String get failedCreateProfile;
 }
 
 class _AppLocalizationsDelegate
