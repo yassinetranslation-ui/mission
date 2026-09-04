@@ -866,4 +866,151 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sequenceExplanation => 'شرح التسلسل:';
+
+  @override
+  String get heroProfile => 'ملف البطل';
+
+  @override
+  String get parentDashboard => 'لوحة الأهل';
+
+  @override
+  String get activeStreak => 'سلسلة نشطة';
+
+  @override
+  String get totalXpLabel => 'إجمالي النقاط';
+
+  @override
+  String get completed => 'مكتملة';
+
+  @override
+  String get collected => 'مجموعة';
+
+  @override
+  String get days => 'أيام';
+
+  @override
+  String get questsWord => 'مهمات';
+
+  @override
+  String get playTodaysQuests => 'العب مهمات اليوم';
+
+  @override
+  String get switchToParentMode => 'التبديل لوضع الأهل';
+
+  @override
+  String get editChildProfile => 'تعديل ملف الطفل';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get failedUpdateChild => 'فشل تحديث الطفل';
+
+  @override
+  String get deleteProfile => 'حذف الملف';
+
+  @override
+  String deleteProfileConfirm(String name) {
+    return 'هل أنت متأكد من حذف ملف $name؟ سيؤدي هذا لإزالة كل تقدّمه.';
+  }
+
+  @override
+  String get failedDeleteChild => 'فشل حذف الطفل';
+
+  @override
+  String get childDetails => 'تفاصيل الطفل';
+
+  @override
+  String get childNotFound => 'لم يُعثر على ملف الطفل';
+
+  @override
+  String get editProfile => 'تعديل الملف';
+
+  @override
+  String get actions => 'إجراءات';
+
+  @override
+  String playAs(String name) {
+    return 'العب باسم $name';
+  }
+
+  @override
+  String get viewProgressReports => 'عرض التقدّم والتقارير';
+
+  @override
+  String uploadLessonFor(String name) {
+    return 'رفع درس لـ $name';
+  }
+
+  @override
+  String childReport(String name) {
+    return 'تقرير $name';
+  }
+
+  @override
+  String get noLearningData => 'لا توجد بيانات تعلّم بعد.';
+
+  @override
+  String get onTrack => 'على المسار 🚀';
+
+  @override
+  String get targetedPracticeNeeded => 'يلزم تدريب موجّه';
+
+  @override
+  String get areasForFocus => 'مجالات التركيز';
+
+  @override
+  String get microMissionsDesc =>
+      'مهمات مصغّرة موجّهة ستعزّز هذه المفاهيم بسرعة.';
+
+  @override
+  String get generateAdaptivePractice => 'أنشئ مهمة تدريب تكيّفية';
+
+  @override
+  String get conceptBreakdown => 'تفصيل المفاهيم';
+
+  @override
+  String get attempts => 'المحاولات';
+
+  @override
+  String get accuracy => 'دقة';
+
+  @override
+  String get recommendedSteps => 'خطوات موصى بها للأهل';
+
+  @override
+  String get failedGeneratePractice => 'فشل إنشاء التدريب';
+
+  @override
+  String get masteredTier => 'متقن 🌟';
+
+  @override
+  String get goodTier => 'جيد 👍';
+
+  @override
+  String get developingTier => 'في تطوّر 📈';
+
+  @override
+  String get needsPracticeTier => 'يحتاج تدريباً 🎯';
+
+  @override
+  String get lessonReport => 'تقرير الدرس';
+
+  @override
+  String get noReportData => 'لا توجد بيانات تقرير.';
+
+  @override
+  String get strengths => 'نقاط القوة';
+
+  @override
+  String get weaknesses => 'مجالات التحسين';
+
+  @override
+  String get recommendations => 'التوصيات';
+
+  @override
+  String get student => 'الطالب';
+
+  @override
+  String get noReportForLesson => 'لا يوجد تقرير لهذا الدرس.';
 }

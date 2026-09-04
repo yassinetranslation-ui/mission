@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/learning_report.dart';
 import '../../../models/learning_progress.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
 import '../../../widgets/progress_ring.dart';
@@ -65,7 +67,7 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to generate practice: $e')),
+          SnackBar(content: Text('${AppLocalizations.of(context)!.failedGeneratePractice}: $e')),
         );
       }
     } finally {
@@ -89,42 +91,44 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
   }
 
   String _getTierLabel(MasteryTier tier) {
+    final l = AppLocalizations.of(context)!;
     switch (tier) {
       case MasteryTier.mastered:
-        return 'Mastered 🌟';
+        return l.masteredTier;
       case MasteryTier.good:
-        return 'Good 👍';
+        return l.goodTier;
       case MasteryTier.developing:
-        return 'Developing 📈';
+        return l.developingTier;
       case MasteryTier.needsPractice:
-        return 'Needs Practice 🎯';
+        return l.needsPracticeTier;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     if (_isLoading) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Learning Report')),
+        appBar: AppBar(title: Text(l.learningReport)),
         body: const Center(child: CircularProgressIndicator()),
       );
     }
 
     if (_report == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Learning Report')),
+        appBar: AppBar(title: Text(l.learningReport)),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.analytics_outlined, size: 56, color: Colors.grey),
               const SizedBox(height: 16),
-              const Text('No learning data available yet.'),
+              Text(l.noLearningData),
               const SizedBox(height: 16),
               AppButton.primary(
-                label: 'Back',
+                label: l.back,
                 onPressed: () => context.pop(),
               ),
             ],
@@ -139,7 +143,7 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${_report!.childName}\'s Report'),
+        title: Text(l.childReport(_report!.childName)),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -162,7 +166,7 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Overall Mastery',
+                            l.overallMastery,
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -182,7 +186,7 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
-                              _report!.overallMastery >= 70 ? 'On Track 🚀' : 'Targeted Practice Needed',
+                              _report!.overallMastery >= 70 ? l.onTrack : l.targetedPracticeNeeded,
                               style: TextStyle(
                                 color: theme.colorScheme.primary,
                                 fontWeight: FontWeight.bold,
@@ -202,19 +206,19 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
               // AI Learning Insight
               AppCard(
                 padding: const EdgeInsets.all(20),
-                color: const Color(0xFF6C63FF).withValues(alpha: 0.08),
+                color: AppColors.primary.withValues(alpha: 0.08),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.auto_awesome, color: Color(0xFF6C63FF)),
+                        const Icon(Icons.auto_awesome, color: AppColors.primary),
                         const SizedBox(width: 8),
                         Text(
-                          'AI Learning Insight',
+                          l.aiLearningInsight,
                           style: theme.textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.bold,
-                            color: const Color(0xFF6C63FF),
+                            color: AppColors.primary,
                           ),
                         ),
                       ],
@@ -241,24 +245,22 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
                           const Icon(Icons.flag_outlined, color: Colors.orange),
                           const SizedBox(width: 8),
                           Text(
-                            'Areas for Focus (${weakConcepts.length})',
+                            '${l.areasForFocus} (${weakConcepts.length})',
                             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        'Targeted micro-missions will reinforce these concepts quickly.',
+                        l.microMissionsDesc,
                         style: theme.textTheme.bodySmall,
                       ),
                       const SizedBox(height: 16),
-                      if (_isGeneratingPractice)
-                        const Center(child: CircularProgressIndicator())
-                      else
-                        AppButton.game(
-                          label: '🎯 Generate Adaptive Practice Mission',
-                          onPressed: _generateAdaptivePractice,
-                        ),
+                      AppButton.game(
+                        label: '🎯 ${l.generateAdaptivePractice}',
+                        isLoading: _isGeneratingPractice,
+                        onPressed: _generateAdaptivePractice,
+                      ),
                     ],
                   ),
                 ),
@@ -268,7 +270,7 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
 
               // Concepts Breakdown Section
               Text(
-                'Concept Breakdown (${_report!.conceptBreakdown.length})',
+                '${l.conceptBreakdown} (${_report!.conceptBreakdown.length})',
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -330,11 +332,11 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Mastery: ${concept.mastery.toInt()}%',
+                              '${l.mastery}: ${concept.mastery.toInt()}%',
                               style: theme.textTheme.bodySmall,
                             ),
                             Text(
-                              'Attempts: ${concept.attempts} (${concept.accuracy.toInt()}% accuracy)',
+                              '${l.attempts}: ${concept.attempts} (${concept.accuracy.toInt()}% ${l.accuracy})',
                               style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
                             ),
                           ],
@@ -350,7 +352,7 @@ class _LearningReportScreenState extends ConsumerState<LearningReportScreen> {
               // Recommended Actions
               if (_report!.recommendedActions.isNotEmpty) ...[
                 Text(
-                  'Recommended Steps for Parents',
+                  l.recommendedSteps,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

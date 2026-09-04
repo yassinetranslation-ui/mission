@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/child_profile.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
 import '../../../widgets/xp_bar.dart';
@@ -40,6 +42,7 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     if (_isLoading) {
       return const Scaffold(
@@ -47,7 +50,7 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
       );
     }
 
-    final name = _child?.name ?? 'Super Explorer';
+    final name = _child?.name ?? l.explorer;
     final age = _child?.age ?? 9;
     final level = _child?.currentLevel ?? 1;
     final totalXp = _child?.xpTotal ?? 250;
@@ -55,11 +58,11 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🦸 Hero Profile'),
+        title: Text('🦸 ${l.heroProfile}'),
         actions: [
           IconButton(
             icon: const Icon(Icons.shield_outlined),
-            tooltip: 'Parent Dashboard',
+            tooltip: l.parentDashboard,
             onPressed: () => context.go('/parent'),
           ),
         ],
@@ -79,7 +82,7 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                       children: [
                         CircleAvatar(
                           radius: 46,
-                          backgroundColor: const Color(0xFFFF6B35),
+                          backgroundColor: AppColors.childPrimary,
                           child: Text(
                             name.isNotEmpty ? name[0].toUpperCase() : 'E',
                             style: const TextStyle(
@@ -108,7 +111,7 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Level $level Explorer • Age $age',
+                      '${l.level} $level • ${l.ageLabel(age)}',
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
@@ -135,8 +138,8 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                         children: [
                           const Text('🔥', style: TextStyle(fontSize: 28)),
                           const SizedBox(height: 6),
-                          Text('$streak Days', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                          const Text('Active Streak', style: TextStyle(color: Colors.grey, fontSize: 11)),
+                          Text('$streak ${l.days}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                          Text(l.activeStreak, style: const TextStyle(color: Colors.grey, fontSize: 11)),
                         ],
                       ),
                     ),
@@ -150,7 +153,7 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                           const Text('🏆', style: TextStyle(fontSize: 28)),
                           const SizedBox(height: 6),
                           Text('$totalXp', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.amber)),
-                          const Text('Total XP', style: TextStyle(color: Colors.grey, fontSize: 11)),
+                          Text(l.totalXpLabel, style: const TextStyle(color: Colors.grey, fontSize: 11)),
                         ],
                       ),
                     ),
@@ -165,12 +168,12 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                   Expanded(
                     child: AppCard(
                       padding: const EdgeInsets.all(16),
-                      child: const Column(
+                      child: Column(
                         children: [
-                          Text('🎮', style: TextStyle(fontSize: 28)),
-                          SizedBox(height: 6),
-                          Text('4 Quests', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                          Text('Completed', style: TextStyle(color: Colors.grey, fontSize: 11)),
+                          const Text('🎮', style: TextStyle(fontSize: 28)),
+                          const SizedBox(height: 6),
+                          Text('4 ${l.questsWord}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                          Text(l.completed, style: const TextStyle(color: Colors.grey, fontSize: 11)),
                         ],
                       ),
                     ),
@@ -179,12 +182,12 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                   Expanded(
                     child: AppCard(
                       padding: const EdgeInsets.all(16),
-                      child: const Column(
+                      child: Column(
                         children: [
-                          Text('🌟', style: TextStyle(fontSize: 28)),
-                          SizedBox(height: 6),
-                          Text('3 Badges', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                          Text('Collected', style: TextStyle(color: Colors.grey, fontSize: 11)),
+                          const Text('🌟', style: TextStyle(fontSize: 28)),
+                          const SizedBox(height: 6),
+                          Text('3 ${l.badges}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                          Text(l.collected, style: const TextStyle(color: Colors.grey, fontSize: 11)),
                         ],
                       ),
                     ),
@@ -196,12 +199,12 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
 
               // Action buttons
               AppButton.game(
-                label: '🚀 Play Today\'s Quests',
+                label: '🚀 ${l.playTodaysQuests}',
                 onPressed: () => context.go('/child'),
               ),
               const SizedBox(height: 12),
               AppButton.secondary(
-                label: '🛡️ Switch to Parent Mode',
+                label: '🛡️ ${l.switchToParentMode}',
                 icon: Icons.shield_outlined,
                 onPressed: () => context.go('/parent'),
               ),

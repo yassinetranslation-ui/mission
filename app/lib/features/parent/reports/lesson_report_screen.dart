@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/learning_report.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
@@ -52,27 +53,28 @@ class _LessonReportScreenState extends ConsumerState<LessonReportScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     if (_isLoading) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Lesson Report')),
+        appBar: AppBar(title: Text(l.lessonReport)),
         body: const Center(child: CircularProgressIndicator()),
       );
     }
 
     if (_report == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Lesson Report')),
+        appBar: AppBar(title: Text(l.lessonReport)),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.grey),
               const SizedBox(height: 16),
-              const Text('No report available for this lesson.'),
+              Text(l.noReportForLesson),
               const SizedBox(height: 16),
               AppButton.primary(
-                label: 'Back',
+                label: l.back,
                 onPressed: () => context.pop(),
               ),
             ],
@@ -112,7 +114,7 @@ class _LessonReportScreenState extends ConsumerState<LessonReportScreen> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'Student: ${_report!.childName}',
+                            '${l.student}: ${_report!.childName}',
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                             ),
@@ -137,7 +139,7 @@ class _LessonReportScreenState extends ConsumerState<LessonReportScreen> {
                         Icon(Icons.auto_awesome, color: theme.colorScheme.primary),
                         const SizedBox(width: 8),
                         Text(
-                          'Pedagogical AI Insight',
+                          l.aiLearningInsight,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.primary,

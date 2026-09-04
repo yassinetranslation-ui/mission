@@ -873,4 +873,151 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sequenceExplanation => 'Sequence Explanation:';
+
+  @override
+  String get heroProfile => 'Hero Profile';
+
+  @override
+  String get parentDashboard => 'Parent Dashboard';
+
+  @override
+  String get activeStreak => 'Active Streak';
+
+  @override
+  String get totalXpLabel => 'Total XP';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get collected => 'Collected';
+
+  @override
+  String get days => 'Days';
+
+  @override
+  String get questsWord => 'Quests';
+
+  @override
+  String get playTodaysQuests => 'Play Today\'s Quests';
+
+  @override
+  String get switchToParentMode => 'Switch to Parent Mode';
+
+  @override
+  String get editChildProfile => 'Edit Child Profile';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get failedUpdateChild => 'Failed to update child';
+
+  @override
+  String get deleteProfile => 'Delete Profile';
+
+  @override
+  String deleteProfileConfirm(String name) {
+    return 'Are you sure you want to delete $name\'s profile? This will remove all their progress.';
+  }
+
+  @override
+  String get failedDeleteChild => 'Failed to delete child';
+
+  @override
+  String get childDetails => 'Child Details';
+
+  @override
+  String get childNotFound => 'Child profile not found';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get actions => 'Actions';
+
+  @override
+  String playAs(String name) {
+    return 'Play as $name';
+  }
+
+  @override
+  String get viewProgressReports => 'View Progress & Reports';
+
+  @override
+  String uploadLessonFor(String name) {
+    return 'Upload Lesson for $name';
+  }
+
+  @override
+  String childReport(String name) {
+    return '$name\'s Report';
+  }
+
+  @override
+  String get noLearningData => 'No learning data available yet.';
+
+  @override
+  String get onTrack => 'On Track 🚀';
+
+  @override
+  String get targetedPracticeNeeded => 'Targeted Practice Needed';
+
+  @override
+  String get areasForFocus => 'Areas for Focus';
+
+  @override
+  String get microMissionsDesc =>
+      'Targeted micro-missions will reinforce these concepts quickly.';
+
+  @override
+  String get generateAdaptivePractice => 'Generate Adaptive Practice Mission';
+
+  @override
+  String get conceptBreakdown => 'Concept Breakdown';
+
+  @override
+  String get attempts => 'Attempts';
+
+  @override
+  String get accuracy => 'accuracy';
+
+  @override
+  String get recommendedSteps => 'Recommended Steps for Parents';
+
+  @override
+  String get failedGeneratePractice => 'Failed to generate practice';
+
+  @override
+  String get masteredTier => 'Mastered 🌟';
+
+  @override
+  String get goodTier => 'Good 👍';
+
+  @override
+  String get developingTier => 'Developing 📈';
+
+  @override
+  String get needsPracticeTier => 'Needs Practice 🎯';
+
+  @override
+  String get lessonReport => 'Lesson Report';
+
+  @override
+  String get noReportData => 'No report data available.';
+
+  @override
+  String get strengths => 'Strengths';
+
+  @override
+  String get weaknesses => 'Areas to Improve';
+
+  @override
+  String get recommendations => 'Recommendations';
+
+  @override
+  String get student => 'Student';
+
+  @override
+  String get noReportForLesson => 'No report available for this lesson.';
 }

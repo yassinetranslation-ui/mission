@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/child_profile.dart';
 import '../../../services/child_service.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
 import '../../../widgets/app_input.dart';
@@ -49,6 +51,7 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
 
   Future<void> _showEditDialog() async {
     if (_child == null) return;
+    final l = AppLocalizations.of(context)!;
 
     final nameController = TextEditingController(text: _child!.name);
     final ageController = TextEditingController(text: _child!.age.toString());
@@ -69,27 +72,27 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Edit Child Profile'),
+          title: Text(l.editChildProfile),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 AppInput(
                   controller: nameController,
-                  label: 'Name',
-                  hint: 'Child\'s name',
+                  label: l.name,
+                  hint: l.childNameLabel,
                 ),
                 const SizedBox(height: 16),
                 AppInput(
                   controller: ageController,
-                  label: 'Age',
-                  hint: 'Child\'s age',
+                  label: l.childAge,
+                  hint: l.ageHint,
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
                   initialValue: grades.contains(selectedGrade) ? selectedGrade : grades[0],
-                  decoration: const InputDecoration(labelText: 'Grade Level'),
+                  decoration: InputDecoration(labelText: l.gradeLevel),
                   items: grades.map((g) => DropdownMenuItem(value: g, child: Text(g))).toList(),
                   onChanged: (val) {
                     if (val != null) selectedGrade = val;
@@ -101,10 +104,10 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
+              child: Text(l.cancel),
             ),
             AppButton.primary(
-              label: 'Save',
+              label: l.save,
               size: AppButtonSize.sm,
               onPressed: () async {
                 final newAge = int.tryParse(ageController.text) ?? _child!.age;
@@ -125,7 +128,7 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
                   _loadChild();
                 } catch (e) {
                   messenger.showSnackBar(
-                    SnackBar(content: Text('Failed to update child: $e')),
+                    SnackBar(content: Text('${l.failedUpdateChild}: $e')),
                   );
                 }
               },
@@ -137,20 +140,21 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
   }
 
   Future<void> _deleteChild() async {
+    final l = AppLocalizations.of(context)!;
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Profile'),
-        content: Text('Are you sure you want to delete ${_child?.name}\'s profile? This will remove all their progress.'),
+        title: Text(l.deleteProfile),
+        content: Text(l.deleteProfileConfirm(_child?.name ?? '')),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(l.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Delete'),
+            style: TextButton.styleFrom(foregroundColor: AppColors.error),
+            child: Text(l.delete),
           ),
         ],
       ),
@@ -160,13 +164,13 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
       final repo = ref.read(childRepositoryProvider);
       final router = GoRouter.of(context);
       final messenger = ScaffoldMessenger.of(context);
-      
+
       try {
         await repo.deleteChild(widget.childId);
         router.pop();
       } catch (e) {
         messenger.showSnackBar(
-          SnackBar(content: Text('Failed to delete child: $e')),
+          SnackBar(content: Text('${l.failedDeleteChild}: $e')),
         );
       }
     }
@@ -175,18 +179,19 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     if (_isLoading) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Child Details')),
+        appBar: AppBar(title: Text(l.childDetails)),
         body: const Center(child: CircularProgressIndicator()),
       );
     }
 
     if (_child == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Child Details')),
-        body: const Center(child: Text('Child profile not found')),
+        appBar: AppBar(title: Text(l.childDetails)),
+        body: Center(child: Text(l.childNotFound)),
       );
     }
 
@@ -196,12 +201,12 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.edit_outlined),
-            tooltip: 'Edit Profile',
+            tooltip: l.editProfile,
             onPressed: _showEditDialog,
           ),
           IconButton(
-            icon: const Icon(Icons.delete_outline, color: Colors.red),
-            tooltip: 'Delete Profile',
+            icon: const Icon(Icons.delete_outline, color: AppColors.error),
+            tooltip: l.deleteProfile,
             onPressed: _deleteChild,
           ),
         ],
@@ -236,7 +241,7 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    'Age ${_child!.age}  •  ${_child!.gradeLevel ?? "Grade N/A"}',
+                    '${l.ageLabel(_child!.age)}  •  ${_child!.gradeLevel ?? "-"}',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
@@ -262,24 +267,24 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Actions',
+                    l.actions,
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 16),
                   AppButton.game(
-                    label: '🎮 Play as ${_child!.name}',
+                    label: '🎮 ${l.playAs(_child!.name)}',
                     onPressed: () => context.go('/child'),
                   ),
                   const SizedBox(height: 12),
                   AppButton.secondary(
-                    label: '📊 View Progress & Reports',
+                    label: '📊 ${l.viewProgressReports}',
                     onPressed: () => context.push('/parent/reports/${_child!.id}'),
                   ),
                   const SizedBox(height: 12),
                   AppButton.primary(
-                    label: '📤 Upload Lesson for ${_child!.name}',
+                    label: '📤 ${l.uploadLessonFor(_child!.name)}',
                     onPressed: () => context.push('/parent/upload'),
                   ),
                 ],

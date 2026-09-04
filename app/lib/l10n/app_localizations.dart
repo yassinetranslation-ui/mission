@@ -1777,6 +1777,282 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sequence Explanation:'**
   String get sequenceExplanation;
+
+  /// No description provided for @heroProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Hero Profile'**
+  String get heroProfile;
+
+  /// No description provided for @parentDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent Dashboard'**
+  String get parentDashboard;
+
+  /// No description provided for @activeStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Streak'**
+  String get activeStreak;
+
+  /// No description provided for @totalXpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Total XP'**
+  String get totalXpLabel;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @collected.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected'**
+  String get collected;
+
+  /// No description provided for @days.
+  ///
+  /// In en, this message translates to:
+  /// **'Days'**
+  String get days;
+
+  /// No description provided for @questsWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Quests'**
+  String get questsWord;
+
+  /// No description provided for @playTodaysQuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Today\'s Quests'**
+  String get playTodaysQuests;
+
+  /// No description provided for @switchToParentMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to Parent Mode'**
+  String get switchToParentMode;
+
+  /// No description provided for @editChildProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Child Profile'**
+  String get editChildProfile;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @failedUpdateChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update child'**
+  String get failedUpdateChild;
+
+  /// No description provided for @deleteProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Profile'**
+  String get deleteProfile;
+
+  /// No description provided for @deleteProfileConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {name}\'s profile? This will remove all their progress.'**
+  String deleteProfileConfirm(String name);
+
+  /// No description provided for @failedDeleteChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete child'**
+  String get failedDeleteChild;
+
+  /// No description provided for @childDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Child Details'**
+  String get childDetails;
+
+  /// No description provided for @childNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Child profile not found'**
+  String get childNotFound;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
+  /// No description provided for @actions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions'**
+  String get actions;
+
+  /// No description provided for @playAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Play as {name}'**
+  String playAs(String name);
+
+  /// No description provided for @viewProgressReports.
+  ///
+  /// In en, this message translates to:
+  /// **'View Progress & Reports'**
+  String get viewProgressReports;
+
+  /// No description provided for @uploadLessonFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Lesson for {name}'**
+  String uploadLessonFor(String name);
+
+  /// No description provided for @childReport.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s Report'**
+  String childReport(String name);
+
+  /// No description provided for @noLearningData.
+  ///
+  /// In en, this message translates to:
+  /// **'No learning data available yet.'**
+  String get noLearningData;
+
+  /// No description provided for @onTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'On Track 🚀'**
+  String get onTrack;
+
+  /// No description provided for @targetedPracticeNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Targeted Practice Needed'**
+  String get targetedPracticeNeeded;
+
+  /// No description provided for @areasForFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'Areas for Focus'**
+  String get areasForFocus;
+
+  /// No description provided for @microMissionsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Targeted micro-missions will reinforce these concepts quickly.'**
+  String get microMissionsDesc;
+
+  /// No description provided for @generateAdaptivePractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate Adaptive Practice Mission'**
+  String get generateAdaptivePractice;
+
+  /// No description provided for @conceptBreakdown.
+  ///
+  /// In en, this message translates to:
+  /// **'Concept Breakdown'**
+  String get conceptBreakdown;
+
+  /// No description provided for @attempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Attempts'**
+  String get attempts;
+
+  /// No description provided for @accuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'accuracy'**
+  String get accuracy;
+
+  /// No description provided for @recommendedSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended Steps for Parents'**
+  String get recommendedSteps;
+
+  /// No description provided for @failedGeneratePractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to generate practice'**
+  String get failedGeneratePractice;
+
+  /// No description provided for @masteredTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Mastered 🌟'**
+  String get masteredTier;
+
+  /// No description provided for @goodTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Good 👍'**
+  String get goodTier;
+
+  /// No description provided for @developingTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Developing 📈'**
+  String get developingTier;
+
+  /// No description provided for @needsPracticeTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs Practice 🎯'**
+  String get needsPracticeTier;
+
+  /// No description provided for @lessonReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson Report'**
+  String get lessonReport;
+
+  /// No description provided for @noReportData.
+  ///
+  /// In en, this message translates to:
+  /// **'No report data available.'**
+  String get noReportData;
+
+  /// No description provided for @strengths.
+  ///
+  /// In en, this message translates to:
+  /// **'Strengths'**
+  String get strengths;
+
+  /// No description provided for @weaknesses.
+  ///
+  /// In en, this message translates to:
+  /// **'Areas to Improve'**
+  String get weaknesses;
+
+  /// No description provided for @recommendations.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommendations'**
+  String get recommendations;
+
+  /// No description provided for @student.
+  ///
+  /// In en, this message translates to:
+  /// **'Student'**
+  String get student;
+
+  /// No description provided for @noReportForLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'No report available for this lesson.'**
+  String get noReportForLesson;
 }
 
 class _AppLocalizationsDelegate
