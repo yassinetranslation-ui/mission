@@ -40,3 +40,19 @@ class CompleteSessionResponse(BaseModel):
     achievements_earned: List[Dict[str, Any]] = []
 
     model_config = {"from_attributes": True}
+
+class SessionDetailResponse(BaseModel):
+    id: str
+    game_id: str
+    child_id: str
+    score: int
+    xp_earned: int
+    completion_percentage: float
+    total_questions: int
+    correct_answers: int
+    duration_seconds: int
+    status: str
+    started_at: Optional[datetime] = None
+    completed_at: Optional[datetime] = None
+
+    model_config = {"from_attributes": True}

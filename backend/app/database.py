@@ -17,6 +17,11 @@ elif "mysql" in settings.database_url:
         "pool_size": 10,
         "max_overflow": 20,
     })
+elif "postgresql" in settings.database_url:
+    engine_kwargs.update({
+        "pool_recycle": 300,
+        "pool_pre_ping": True,
+    })
 
 engine = create_engine(settings.database_url, **engine_kwargs)
 

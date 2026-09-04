@@ -10,7 +10,8 @@ from app.schemas.session import (
     StartSessionResponse,
     SubmitAnswerRequest,
     AnswerResponse,
-    CompleteSessionResponse
+    CompleteSessionResponse,
+    SessionDetailResponse
 )
 from app.schemas.game import GameResponse
 from app.models.user import User
@@ -183,7 +184,7 @@ def complete_session(
         ]
     )
 
-@router.get("/{session_id}", response_model=GameSession)
+@router.get("/{session_id}", response_model=SessionDetailResponse)
 def get_session(session_id: str, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     """Get details for a specific game session"""
     result = db.execute(select(GameSession).where(GameSession.id == session_id))

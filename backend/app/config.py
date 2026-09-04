@@ -59,6 +59,12 @@ class Settings(BaseSettings):
                 host_port += f":{self.db_port}"
                 
             self.database_url = f"{driver}://{user_pass}{host_port}/{self.db_database}"
+
+        # Render (and some providers) hand out the legacy "postgres://" scheme,
+        # which SQLAlchemy no longer recognizes. Normalize it to "postgresql://".
+        if self.database_url.startswith("postgres://"):
+            self.database_url = "postgresql://" + self.database_url[len("postgres://"):]
+
         return self
 
     def get_cors_origins(self) -> List[str]:
