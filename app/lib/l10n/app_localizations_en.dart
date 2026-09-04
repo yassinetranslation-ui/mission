@@ -734,4 +734,143 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get returnToDashboard => 'Return to Dashboard';
+
+  @override
+  String get mission => 'Mission';
+
+  @override
+  String get exitMission => 'Exit Mission?';
+
+  @override
+  String get exitMissionBody =>
+      'Are you sure you want to exit? Your current level progress will be lost.';
+
+  @override
+  String get keepPlaying => 'Keep Playing';
+
+  @override
+  String get exit => 'Exit';
+
+  @override
+  String get missionCompleted => 'Mission Completed!';
+
+  @override
+  String get playAgain => 'Play Again';
+
+  @override
+  String get backToMissions => 'Back to Missions';
+
+  @override
+  String get failedLoadGame => 'Failed to load game.';
+
+  @override
+  String get unknownLevel => 'Unknown level type';
+
+  @override
+  String get finishMission => 'Finish Mission';
+
+  @override
+  String get missionsQuests => 'Missions & Quests';
+
+  @override
+  String get play => 'Play';
+
+  @override
+  String get customMission => 'Custom Mission';
+
+  @override
+  String get levels => 'Levels';
+
+  @override
+  String get bossFight => 'Boss Fight';
+
+  @override
+  String badgesUnlocked(int count, int total) {
+    return '$count / $total Badges Unlocked';
+  }
+
+  @override
+  String get keepPlayingCollect => 'Keep playing missions to collect them all!';
+
+  @override
+  String get explorerBadges => 'Explorer Badges';
+
+  @override
+  String get locked => 'Locked';
+
+  @override
+  String get awesome => 'Awesome!';
+
+  @override
+  String get missionPreview => 'Mission Preview';
+
+  @override
+  String get generatedMissionPreview => 'Generated Mission Preview';
+
+  @override
+  String get playMissionNow => 'Play Mission Now';
+
+  @override
+  String get couldNotLoadPreview => 'Could not load game preview.';
+
+  @override
+  String get missionRoadmap => 'Mission Roadmap';
+
+  @override
+  String get challenge => 'Challenge';
+
+  @override
+  String get hint => 'Hint';
+
+  @override
+  String get hideHint => 'Hide Hint';
+
+  @override
+  String get correctFeedback => 'Awesome! That\'s correct! 🎉';
+
+  @override
+  String get wrongFeedback => 'Good try! Here\'s why:';
+
+  @override
+  String get matchingQuest => 'Matching Quest';
+
+  @override
+  String matchedCount(int count, int total) {
+    return '$count/$total Matched';
+  }
+
+  @override
+  String get notAMatch => 'Not quite a match, try again!';
+
+  @override
+  String get allMatched => 'All Pairs Matched Perfectly! 🌟';
+
+  @override
+  String get bossBattle => 'BOSS BATTLE';
+
+  @override
+  String get bossDefeated => 'BOSS DEFEATED! 🏆';
+
+  @override
+  String get bossDefeatedBody =>
+      'You cleared all challenges and mastered the mission!';
+
+  @override
+  String get orderingQuest => 'Sequence Mission';
+
+  @override
+  String get checkOrder => 'Verify Order';
+
+  @override
+  String get correctOrder => 'Correct Sequence! 🎯';
+
+  @override
+  String get wrongOrder => 'Not quite the right order, try again!';
+
+  @override
+  String get dragInstruction =>
+      'Drag items up or down to place them in the correct order.';
+
+  @override
+  String get sequenceExplanation => 'Sequence Explanation:';
 }

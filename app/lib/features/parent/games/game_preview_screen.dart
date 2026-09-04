@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/game_specification.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
 
@@ -46,27 +48,28 @@ class _GamePreviewScreenState extends ConsumerState<GamePreviewScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     if (_isLoading) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Mission Preview')),
+        appBar: AppBar(title: Text(l.missionPreview)),
         body: const Center(child: CircularProgressIndicator()),
       );
     }
 
     if (_game == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Mission Preview')),
+        appBar: AppBar(title: Text(l.missionPreview)),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.error_outline, size: 48, color: Colors.red),
+              const Icon(Icons.error_outline, size: 48, color: AppColors.error),
               const SizedBox(height: 16),
-              const Text('Could not load game preview.'),
+              Text(l.couldNotLoadPreview),
               const SizedBox(height: 16),
               AppButton.primary(
-                label: 'Back',
+                label: l.back,
                 onPressed: () => context.pop(),
               ),
             ],
@@ -77,13 +80,13 @@ class _GamePreviewScreenState extends ConsumerState<GamePreviewScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Generated Mission Preview'),
+        title: Text(l.generatedMissionPreview),
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: AppButton.game(
-            label: '🎮 Play Mission Now',
+            label: '🎮 ${l.playMissionNow}',
             onPressed: () {
               context.push('/game/${_game!.gameId}/preview_session');
             },
@@ -98,12 +101,7 @@ class _GamePreviewScreenState extends ConsumerState<GamePreviewScreen> {
             children: [
               // Header Card
               AppCard.elevated(
-                gradient: LinearGradient(
-                  colors: [
-                    theme.colorScheme.primary,
-                    const Color(0xFF7A6CF0),
-                  ],
-                ),
+                gradient: AppColors.primaryGradient,
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,7 +184,7 @@ class _GamePreviewScreenState extends ConsumerState<GamePreviewScreen> {
 
               // Levels Roadmap
               Text(
-                'Mission Roadmap (${_game!.levels.length} Levels)',
+                '${l.missionRoadmap} (${_game!.levels.length} ${l.levels})',
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),

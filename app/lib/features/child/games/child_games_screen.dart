@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/game_specification.dart';
 import '../../../models/child_profile.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
 
@@ -72,10 +74,11 @@ class _ChildGamesScreenState extends ConsumerState<ChildGamesScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🎮 Missions & Quests'),
+        title: Text('🎮 ${l.missionsQuests}'),
       ),
       body: SafeArea(
         child: Column(
@@ -94,9 +97,9 @@ class _ChildGamesScreenState extends ConsumerState<ChildGamesScreen> {
                   return ChoiceChip(
                     label: Text(subject),
                     selected: isSelected,
-                    selectedColor: const Color(0xFFFF6B35).withValues(alpha: 0.2),
+                    selectedColor: AppColors.childPrimary.withValues(alpha: 0.2),
                     labelStyle: TextStyle(
-                      color: isSelected ? const Color(0xFFFF6B35) : theme.colorScheme.onSurface,
+                      color: isSelected ? AppColors.childPrimary : theme.colorScheme.onSurface,
                       fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                     ),
                     onSelected: (val) {
@@ -218,10 +221,10 @@ class _ChildGamesScreenState extends ConsumerState<ChildGamesScreen> {
             children: [
               Icon(Icons.layers_outlined, size: 16, color: Colors.grey.shade600),
               const SizedBox(width: 4),
-              Text('$levelsCount Levels + Boss Fight', style: TextStyle(color: Colors.grey.shade600, fontSize: 12)),
+              Text('$levelsCount ${AppLocalizations.of(context)!.levels} + ${AppLocalizations.of(context)!.bossFight}', style: TextStyle(color: Colors.grey.shade600, fontSize: 12)),
               const Spacer(),
               AppButton.game(
-                label: '▶️ Play',
+                label: '▶️ ${AppLocalizations.of(context)!.play}',
                 size: AppButtonSize.sm,
                 onPressed: () {
                   context.push('/game/$gameId/demo-session-${DateTime.now().millisecondsSinceEpoch}');
@@ -249,10 +252,10 @@ class _ChildGamesScreenState extends ConsumerState<ChildGamesScreen> {
                   color: const Color(0xFF00BFA6).withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Text(
-                  'Custom Mission ✨',
-                  style: TextStyle(
-                    color: Color(0xFF00BFA6),
+                child: Text(
+                  '${AppLocalizations.of(context)!.customMission} ✨',
+                  style: const TextStyle(
+                    color: AppColors.tertiary,
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                   ),
@@ -287,10 +290,10 @@ class _ChildGamesScreenState extends ConsumerState<ChildGamesScreen> {
             children: [
               Icon(Icons.layers_outlined, size: 16, color: Colors.grey.shade600),
               const SizedBox(width: 4),
-              Text('${game.levels.length} Levels', style: TextStyle(color: Colors.grey.shade600, fontSize: 12)),
+              Text('${game.levels.length} ${AppLocalizations.of(context)!.levels}', style: TextStyle(color: Colors.grey.shade600, fontSize: 12)),
               const Spacer(),
               AppButton.game(
-                label: '▶️ Play',
+                label: '▶️ ${AppLocalizations.of(context)!.play}',
                 size: AppButtonSize.sm,
                 onPressed: () => _launchGame(game),
               ),

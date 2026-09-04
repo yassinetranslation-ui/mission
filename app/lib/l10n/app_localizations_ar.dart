@@ -728,4 +728,142 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get returnToDashboard => 'العودة للوحة التحكم';
+
+  @override
+  String get mission => 'مهمة';
+
+  @override
+  String get exitMission => 'الخروج من المهمة؟';
+
+  @override
+  String get exitMissionBody =>
+      'هل أنت متأكد من الخروج؟ سيُفقد تقدّم المستوى الحالي.';
+
+  @override
+  String get keepPlaying => 'متابعة اللعب';
+
+  @override
+  String get exit => 'خروج';
+
+  @override
+  String get missionCompleted => 'اكتملت المهمة!';
+
+  @override
+  String get playAgain => 'العب مجدداً';
+
+  @override
+  String get backToMissions => 'العودة للمهمات';
+
+  @override
+  String get failedLoadGame => 'تعذّر تحميل اللعبة.';
+
+  @override
+  String get unknownLevel => 'نوع مستوى غير معروف';
+
+  @override
+  String get finishMission => 'إنهاء المهمة';
+
+  @override
+  String get missionsQuests => 'المهمات والمغامرات';
+
+  @override
+  String get play => 'العب';
+
+  @override
+  String get customMission => 'مهمة مخصّصة';
+
+  @override
+  String get levels => 'مستويات';
+
+  @override
+  String get bossFight => 'معركة زعيم';
+
+  @override
+  String badgesUnlocked(int count, int total) {
+    return '$count / $total شارة مفتوحة';
+  }
+
+  @override
+  String get keepPlayingCollect => 'واصل اللعب لتجمعها كلها!';
+
+  @override
+  String get explorerBadges => 'شارات المستكشف';
+
+  @override
+  String get locked => 'مقفلة';
+
+  @override
+  String get awesome => 'رائع!';
+
+  @override
+  String get missionPreview => 'معاينة المهمة';
+
+  @override
+  String get generatedMissionPreview => 'معاينة المهمة المولّدة';
+
+  @override
+  String get playMissionNow => 'العب المهمة الآن';
+
+  @override
+  String get couldNotLoadPreview => 'تعذّر تحميل معاينة اللعبة.';
+
+  @override
+  String get missionRoadmap => 'خارطة المهمة';
+
+  @override
+  String get challenge => 'تحدٍّ';
+
+  @override
+  String get hint => 'تلميح';
+
+  @override
+  String get hideHint => 'إخفاء التلميح';
+
+  @override
+  String get correctFeedback => 'أحسنت! إجابة صحيحة! 🎉';
+
+  @override
+  String get wrongFeedback => 'محاولة جيدة! إليك السبب:';
+
+  @override
+  String get matchingQuest => 'مهمة المطابقة';
+
+  @override
+  String matchedCount(int count, int total) {
+    return '$count/$total تطابق';
+  }
+
+  @override
+  String get notAMatch => 'ليست مطابقة، حاول مجدداً!';
+
+  @override
+  String get allMatched => 'طابقت كل الأزواج بإتقان! 🌟';
+
+  @override
+  String get bossBattle => 'معركة الزعيم';
+
+  @override
+  String get bossDefeated => 'هُزم الزعيم! 🏆';
+
+  @override
+  String get bossDefeatedBody => 'أكملت كل التحديات وأتقنت المهمة!';
+
+  @override
+  String get orderingQuest => 'مهمة الترتيب';
+
+  @override
+  String get checkOrder => 'تحقّق من الترتيب';
+
+  @override
+  String get correctOrder => 'ترتيب صحيح! 🎯';
+
+  @override
+  String get wrongOrder => 'الترتيب غير صحيح، حاول مجدداً!';
+
+  @override
+  String get dragInstruction =>
+      'اسحب العناصر لأعلى أو لأسفل لترتيبها بشكل صحيح.';
+
+  @override
+  String get sequenceExplanation => 'شرح التسلسل:';
 }

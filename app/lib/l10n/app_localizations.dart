@@ -1513,6 +1513,270 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Return to Dashboard'**
   String get returnToDashboard;
+
+  /// No description provided for @mission.
+  ///
+  /// In en, this message translates to:
+  /// **'Mission'**
+  String get mission;
+
+  /// No description provided for @exitMission.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit Mission?'**
+  String get exitMission;
+
+  /// No description provided for @exitMissionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to exit? Your current level progress will be lost.'**
+  String get exitMissionBody;
+
+  /// No description provided for @keepPlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep Playing'**
+  String get keepPlaying;
+
+  /// No description provided for @exit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exit;
+
+  /// No description provided for @missionCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Mission Completed!'**
+  String get missionCompleted;
+
+  /// No description provided for @playAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Again'**
+  String get playAgain;
+
+  /// No description provided for @backToMissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Missions'**
+  String get backToMissions;
+
+  /// No description provided for @failedLoadGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load game.'**
+  String get failedLoadGame;
+
+  /// No description provided for @unknownLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown level type'**
+  String get unknownLevel;
+
+  /// No description provided for @finishMission.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish Mission'**
+  String get finishMission;
+
+  /// No description provided for @missionsQuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Missions & Quests'**
+  String get missionsQuests;
+
+  /// No description provided for @play.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get play;
+
+  /// No description provided for @customMission.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Mission'**
+  String get customMission;
+
+  /// No description provided for @levels.
+  ///
+  /// In en, this message translates to:
+  /// **'Levels'**
+  String get levels;
+
+  /// No description provided for @bossFight.
+  ///
+  /// In en, this message translates to:
+  /// **'Boss Fight'**
+  String get bossFight;
+
+  /// No description provided for @badgesUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} / {total} Badges Unlocked'**
+  String badgesUnlocked(int count, int total);
+
+  /// No description provided for @keepPlayingCollect.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep playing missions to collect them all!'**
+  String get keepPlayingCollect;
+
+  /// No description provided for @explorerBadges.
+  ///
+  /// In en, this message translates to:
+  /// **'Explorer Badges'**
+  String get explorerBadges;
+
+  /// No description provided for @locked.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get locked;
+
+  /// No description provided for @awesome.
+  ///
+  /// In en, this message translates to:
+  /// **'Awesome!'**
+  String get awesome;
+
+  /// No description provided for @missionPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Mission Preview'**
+  String get missionPreview;
+
+  /// No description provided for @generatedMissionPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Generated Mission Preview'**
+  String get generatedMissionPreview;
+
+  /// No description provided for @playMissionNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Mission Now'**
+  String get playMissionNow;
+
+  /// No description provided for @couldNotLoadPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load game preview.'**
+  String get couldNotLoadPreview;
+
+  /// No description provided for @missionRoadmap.
+  ///
+  /// In en, this message translates to:
+  /// **'Mission Roadmap'**
+  String get missionRoadmap;
+
+  /// No description provided for @challenge.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenge'**
+  String get challenge;
+
+  /// No description provided for @hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint'**
+  String get hint;
+
+  /// No description provided for @hideHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide Hint'**
+  String get hideHint;
+
+  /// No description provided for @correctFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Awesome! That\'s correct! 🎉'**
+  String get correctFeedback;
+
+  /// No description provided for @wrongFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Good try! Here\'s why:'**
+  String get wrongFeedback;
+
+  /// No description provided for @matchingQuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching Quest'**
+  String get matchingQuest;
+
+  /// No description provided for @matchedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}/{total} Matched'**
+  String matchedCount(int count, int total);
+
+  /// No description provided for @notAMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Not quite a match, try again!'**
+  String get notAMatch;
+
+  /// No description provided for @allMatched.
+  ///
+  /// In en, this message translates to:
+  /// **'All Pairs Matched Perfectly! 🌟'**
+  String get allMatched;
+
+  /// No description provided for @bossBattle.
+  ///
+  /// In en, this message translates to:
+  /// **'BOSS BATTLE'**
+  String get bossBattle;
+
+  /// No description provided for @bossDefeated.
+  ///
+  /// In en, this message translates to:
+  /// **'BOSS DEFEATED! 🏆'**
+  String get bossDefeated;
+
+  /// No description provided for @bossDefeatedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You cleared all challenges and mastered the mission!'**
+  String get bossDefeatedBody;
+
+  /// No description provided for @orderingQuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Sequence Mission'**
+  String get orderingQuest;
+
+  /// No description provided for @checkOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Order'**
+  String get checkOrder;
+
+  /// No description provided for @correctOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct Sequence! 🎯'**
+  String get correctOrder;
+
+  /// No description provided for @wrongOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Not quite the right order, try again!'**
+  String get wrongOrder;
+
+  /// No description provided for @dragInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag items up or down to place them in the correct order.'**
+  String get dragInstruction;
+
+  /// No description provided for @sequenceExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Sequence Explanation:'**
+  String get sequenceExplanation;
 }
 
 class _AppLocalizationsDelegate

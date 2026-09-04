@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../models/game_specification.dart';
 import '../../../../widgets/app_card.dart';
 
@@ -55,9 +56,9 @@ class _MatchingRendererState extends State<MatchingRenderer> {
     } else {
       // Incorrect Match feedback
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Not quite a match, try again!'),
-          duration: Duration(milliseconds: 900),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.notAMatch),
+          duration: const Duration(milliseconds: 900),
         ),
       );
       setState(() {
@@ -69,6 +70,7 @@ class _MatchingRendererState extends State<MatchingRenderer> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
@@ -90,7 +92,7 @@ class _MatchingRendererState extends State<MatchingRenderer> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        'Matching Quest',
+                        l.matchingQuest,
                         style: TextStyle(
                           color: Colors.teal.shade800,
                           fontWeight: FontWeight.bold,
@@ -100,7 +102,7 @@ class _MatchingRendererState extends State<MatchingRenderer> {
                     ),
                     const Spacer(),
                     Text(
-                      '${_matchedLeftIndices.length}/${widget.content.pairs.length} Matched',
+                      l.matchedCount(_matchedLeftIndices.length, widget.content.pairs.length),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: theme.colorScheme.primary,
@@ -252,7 +254,7 @@ class _MatchingRendererState extends State<MatchingRenderer> {
                       Icon(Icons.celebration, color: Colors.green.shade800),
                       const SizedBox(width: 8),
                       Text(
-                        'All Pairs Matched Perfectly! 🌟',
+                        l.allMatched,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green.shade900,

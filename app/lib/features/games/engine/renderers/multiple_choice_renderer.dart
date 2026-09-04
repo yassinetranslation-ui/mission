@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../models/game_specification.dart';
 import '../../../../widgets/app_card.dart';
 
@@ -39,6 +40,7 @@ class _MultipleChoiceRendererState extends State<MultipleChoiceRenderer> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
     final isCorrect = _selectedIndex == widget.content.correctAnswer;
 
     return SingleChildScrollView(
@@ -62,7 +64,7 @@ class _MultipleChoiceRendererState extends State<MultipleChoiceRenderer> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        'Challenge',
+                        l.challenge,
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
@@ -73,7 +75,7 @@ class _MultipleChoiceRendererState extends State<MultipleChoiceRenderer> {
                     if (widget.content.hint != null)
                       TextButton.icon(
                         icon: const Icon(Icons.lightbulb_outline, size: 18),
-                        label: Text(_showHint ? 'Hide Hint' : 'Hint'),
+                        label: Text(_showHint ? l.hideHint : l.hint),
                         onPressed: () => setState(() => _showHint = !_showHint),
                       ),
                   ],
@@ -221,7 +223,7 @@ class _MultipleChoiceRendererState extends State<MultipleChoiceRenderer> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        isCorrect ? 'Awesome! That is correct! 🎉' : 'Good try! Here is why:',
+                        isCorrect ? l.correctFeedback : l.wrongFeedback,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: isCorrect ? Colors.green.shade900 : Colors.orange.shade900,

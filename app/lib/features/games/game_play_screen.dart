@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/game_specification.dart';
 import '../../../services/game_service.dart';
 import '../../../widgets/app_button.dart';
@@ -152,12 +153,13 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
       );
     }
 
-    return const Center(child: Text('Unknown level type'));
+    return Center(child: Text(AppLocalizations.of(context)!.unknownLevel));
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     if (_isLoading) {
       return const Scaffold(
@@ -167,17 +169,17 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
 
     if (_game == null || _game!.levels.isEmpty) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Mission')),
+        appBar: AppBar(title: Text(l.mission)),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 16),
-              const Text('Failed to load game specification.'),
+              Text(l.failedLoadGame),
               const SizedBox(height: 16),
               AppButton.primary(
-                label: 'Back to Missions',
+                label: l.backToMissions,
                 onPressed: () => context.go('/child'),
               ),
             ],
@@ -216,13 +218,14 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
                       child: const Icon(Icons.emoji_events, size: 72, color: Colors.amber),
                     ),
                     const SizedBox(height: 24),
-                    const Text(
-                      'MISSION COMPLETED! 🏆',
-                      style: TextStyle(
+                    Text(
+                      '${l.missionCompleted} 🏆',
+                      style: const TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -240,7 +243,7 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
                         children: [
                           Column(
                             children: [
-                              const Text('Score', style: TextStyle(color: Colors.grey)),
+                              Text(l.score, style: const TextStyle(color: Colors.grey)),
                               const SizedBox(height: 4),
                               Text(
                                 '$_score',
@@ -250,7 +253,7 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
                           ),
                           Column(
                             children: [
-                              const Text('XP Earned', style: TextStyle(color: Colors.grey)),
+                              Text(l.xpEarned, style: const TextStyle(color: Colors.grey)),
                               const SizedBox(height: 4),
                               Text(
                                 '+$_xpEarned',
@@ -264,7 +267,7 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
                           ),
                           Column(
                             children: [
-                              const Text('Streak', style: TextStyle(color: Colors.grey)),
+                              Text(l.streak, style: const TextStyle(color: Colors.grey)),
                               const SizedBox(height: 4),
                               Text(
                                 '$_streak 🔥',
@@ -279,7 +282,7 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
                     const SizedBox(height: 40),
 
                     AppButton.game(
-                      label: '🎮 Play Again',
+                      label: '🎮 ${l.playAgain}',
                       onPressed: () {
                         setState(() {
                           _currentLevelIndex = 0;
@@ -292,7 +295,7 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
                     ),
                     const SizedBox(height: 12),
                     AppButton.secondary(
-                      label: 'Back to Missions',
+                      label: l.backToMissions,
                       onPressed: () => context.go('/child'),
                     ),
                   ],
@@ -316,11 +319,11 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
             final exit = await showDialog<bool>(
               context: context,
               builder: (c) => AlertDialog(
-                title: const Text('Exit Mission?'),
-                content: const Text('Are you sure you want to exit? Your current level progress will be lost.'),
+                title: Text(l.exitMission),
+                content: Text(l.exitMissionBody),
                 actions: [
-                  TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('Keep Playing')),
-                  TextButton(onPressed: () => Navigator.pop(c, true), child: const Text('Exit')),
+                  TextButton(onPressed: () => Navigator.pop(c, false), child: Text(l.keepPlaying)),
+                  TextButton(onPressed: () => Navigator.pop(c, true), child: Text(l.exit)),
                 ],
               ),
             );
@@ -329,7 +332,7 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
             }
           },
         ),
-        title: Text('Level ${_currentLevelIndex + 1}/${_game!.levels.length}'),
+        title: Text('${l.level} ${_currentLevelIndex + 1}/${_game!.levels.length}'),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
@@ -358,8 +361,8 @@ class _GamePlayScreenState extends ConsumerState<GamePlayScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: AppButton.game(
                   label: _currentLevelIndex < _game!.levels.length - 1
-                      ? '🚀 Next Level'
-                      : '🏆 Finish Mission',
+                      ? '🚀 ${l.nextLevel}'
+                      : '🏆 ${l.finishMission}',
                   onPressed: _goToNextLevel,
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/child_profile.dart';
 import '../../../widgets/app_card.dart';
 import '../../../widgets/confetti_overlay.dart';
@@ -137,7 +138,7 @@ class _ChildAchievementsScreenState extends ConsumerState<ChildAchievementsScree
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                isUnlocked ? 'Unlocked! +${badge["xp"]} XP 🏆' : 'Locked 🔒 Complete quest to unlock',
+                isUnlocked ? '+${badge["xp"]} XP 🏆' : '${AppLocalizations.of(context)!.locked} 🔒',
                 style: TextStyle(
                   color: isUnlocked ? Colors.green.shade900 : Colors.grey.shade700,
                   fontWeight: FontWeight.bold,
@@ -150,7 +151,7 @@ class _ChildAchievementsScreenState extends ConsumerState<ChildAchievementsScree
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(c),
-            child: const Text('Awesome!'),
+            child: Text(AppLocalizations.of(context)!.awesome),
           ),
         ],
       ),
@@ -166,12 +167,13 @@ class _ChildAchievementsScreenState extends ConsumerState<ChildAchievementsScree
     }
 
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
     final unlockedCount = _badges.where((b) => b['isUnlocked'] == true).length;
-    final childName = _activeChild?.name ?? 'Explorer';
+    final childName = _activeChild?.name ?? l.explorer;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('🏆 $childName\'s Badges'),
+        title: Text('🏆 $childName — ${l.badges}'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -198,7 +200,7 @@ class _ChildAchievementsScreenState extends ConsumerState<ChildAchievementsScree
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '$unlockedCount / ${_badges.length} Badges Unlocked',
+                            l.badgesUnlocked(unlockedCount, _badges.length),
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -215,7 +217,7 @@ class _ChildAchievementsScreenState extends ConsumerState<ChildAchievementsScree
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'Keep playing missions to collect them all!',
+                            l.keepPlayingCollect,
                             style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
                           ),
                         ],
@@ -228,7 +230,7 @@ class _ChildAchievementsScreenState extends ConsumerState<ChildAchievementsScree
               const SizedBox(height: 24),
 
               Text(
-                'Explorer Badges',
+                l.explorerBadges,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -293,7 +295,7 @@ class _ChildAchievementsScreenState extends ConsumerState<ChildAchievementsScree
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text(
-                              isUnlocked ? '+${badge["xp"]} XP' : 'Locked 🔒',
+                              isUnlocked ? '+${badge["xp"]} XP' : '${l.locked} 🔒',
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,

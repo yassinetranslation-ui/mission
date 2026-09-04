@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../models/game_specification.dart';
 import '../../../../widgets/app_button.dart';
 import '../../../../widgets/app_card.dart';
@@ -55,6 +56,7 @@ class _OrderingRendererState extends State<OrderingRenderer> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
@@ -74,7 +76,7 @@ class _OrderingRendererState extends State<OrderingRenderer> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    'Sequence Mission',
+                    l.orderingQuest,
                     style: TextStyle(
                       color: Colors.orange.shade800,
                       fontWeight: FontWeight.bold,
@@ -91,7 +93,7 @@ class _OrderingRendererState extends State<OrderingRenderer> {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  'Drag and drop items up or down to place them in chronological order.',
+                  l.dragInstruction,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -180,7 +182,7 @@ class _OrderingRendererState extends State<OrderingRenderer> {
 
           if (!_hasChecked)
             AppButton.game(
-              label: '✅ Verify Order',
+              label: '✅ ${l.checkOrder}',
               onPressed: _checkOrder,
             )
           else ...[
@@ -198,7 +200,7 @@ class _OrderingRendererState extends State<OrderingRenderer> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        _isCorrect ? 'Correct Sequence! 🎯' : 'Sequence Explanation:',
+                        _isCorrect ? l.correctOrder : l.sequenceExplanation,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: _isCorrect ? Colors.green.shade900 : Colors.orange.shade900,

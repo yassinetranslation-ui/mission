@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../models/game_specification.dart';
 import '../../../../widgets/app_card.dart';
 import 'multiple_choice_renderer.dart';
@@ -77,9 +78,9 @@ class _BossBattleRendererState extends State<BossBattleRenderer> with SingleTick
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('The boss resisted your attack! Try again.'),
-          duration: Duration(milliseconds: 1000),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.incorrect),
+          duration: const Duration(milliseconds: 1000),
         ),
       );
     }
@@ -88,6 +89,7 @@ class _BossBattleRendererState extends State<BossBattleRenderer> with SingleTick
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
     final challenge = widget.content.challenges[_currentChallengeIndex];
 
     return SingleChildScrollView(
@@ -115,9 +117,9 @@ class _BossBattleRendererState extends State<BossBattleRenderer> with SingleTick
                         color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text(
-                        '🔥 BOSS BATTLE',
-                        style: TextStyle(
+                      child: Text(
+                        '🔥 ${l.bossBattle}',
+                        style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
@@ -207,7 +209,7 @@ class _BossBattleRendererState extends State<BossBattleRenderer> with SingleTick
                   const Icon(Icons.stars, color: Colors.amber, size: 56),
                   const SizedBox(height: 12),
                   Text(
-                    'BOSS DEFEATED! 🏆',
+                    l.bossDefeated,
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -215,8 +217,8 @@ class _BossBattleRendererState extends State<BossBattleRenderer> with SingleTick
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
-                    'You cleared all challenges and mastered the entire lesson mission!',
+                  Text(
+                    l.bossDefeatedBody,
                     textAlign: TextAlign.center,
                   ),
                 ],
