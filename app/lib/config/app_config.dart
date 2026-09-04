@@ -38,7 +38,7 @@ class AppConfig {
 
   static AppConfig get prod => const AppConfig(
     environment: Environment.prod,
-    apiBaseUrl: 'https://game.motrjim.com/api/v1',
+    apiBaseUrl: 'https://mission-9dyo.onrender.com/api/v1',
   );
   
   // Return active config

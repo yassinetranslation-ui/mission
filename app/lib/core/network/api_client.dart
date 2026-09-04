@@ -12,8 +12,10 @@ class ApiClient {
   ApiClient(this._secureStorage, this._appConfig) {
     _dio = Dio(BaseOptions(
       baseUrl: _appConfig.apiBaseUrl,
-      connectTimeout: const Duration(seconds: 30),
-      receiveTimeout: const Duration(seconds: 30),
+      // Render's free tier can take ~50s to wake from spin-down on the first
+      // request, so keep timeouts generous to avoid a cold-start failure.
+      connectTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
