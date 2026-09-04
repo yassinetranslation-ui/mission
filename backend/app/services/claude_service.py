@@ -39,8 +39,16 @@ class ClaudeService:
                 return json.loads(text[start:end+1])
             raise ValueError(f"Could not parse JSON from Claude response: {raw_text[:200]}")
 
-    def analyze_content(self, text_or_image_data: str, file_type: str = "image", child_age: int = 9, lesson_title: str = "") -> dict:
-        """Analyze educational content using Claude or fallback to rich demo curriculum"""
+    def analyze_content(
+        self,
+        text_or_image_data: str,
+        file_type: str = "image",
+        child_age: int = 9,
+        lesson_title: str = "",
+        image_base64: str = None,
+        image_media_type: str = None,
+    ) -> dict:
+        """Analyze educational content using Claude (text or vision) or fall back to demo."""
         if self.settings.demo_mode or not self.client:
             # Select appropriate demo analysis based on title / text hints
             title_lower = (lesson_title or "").lower()
@@ -55,12 +63,28 @@ class ClaudeService:
             child_age=child_age
         )
 
+        # For image lessons, send the actual image so Claude can read it (vision).
+        if image_base64 and image_media_type:
+            message_content = [
+                {
+                    "type": "image",
+                    "source": {
+                        "type": "base64",
+                        "media_type": image_media_type,
+                        "data": image_base64,
+                    },
+                },
+                {"type": "text", "text": prompt},
+            ]
+        else:
+            message_content = prompt
+
         try:
             response = self.client.messages.create(
                 model=self.settings.claude_model,
                 max_tokens=self.settings.claude_max_tokens,
                 system=SYSTEM_PROMPT,
-                messages=[{"role": "user", "content": prompt}]
+                messages=[{"role": "user", "content": message_content}]
             )
             content = response.content[0].text
             return self._extract_json(content)

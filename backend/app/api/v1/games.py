@@ -16,7 +16,11 @@ from app.models.game import Game
 from app.models.child import Child
 from app.api.middleware.auth_middleware import get_current_user
 from app.services.claude_service import get_claude_service
-from app.utils.file_processor import extract_text_from_pdf
+from app.utils.file_processor import (
+    extract_text_from_pdf,
+    extract_image_base64,
+    get_image_media_type,
+)
 
 router = APIRouter()
 
@@ -41,13 +45,20 @@ def analyze_content(
         if child:
             child_age = child.age
 
-    # Extract content
+    # Extract content. PDFs yield real text; images are sent to Claude vision.
     extracted_text = ""
+    image_base64 = None
+    image_media_type = None
     if os.path.exists(lesson.file_path):
         if lesson.file_type == "pdf":
             extracted_text = extract_text_from_pdf(lesson.file_path)
         else:
-            extracted_text = f"Educational lesson image: {lesson.title}"
+            image_base64 = extract_image_base64(lesson.file_path)
+            image_media_type = get_image_media_type(lesson.file_path)
+            extracted_text = (
+                f"The lesson content is provided as the attached image titled "
+                f"'{lesson.title}'. Read all of its text, diagrams, and figures carefully."
+            )
     else:
         extracted_text = f"Lesson topic: {lesson.title}"
 
@@ -56,7 +67,9 @@ def analyze_content(
         text_or_image_data=extracted_text,
         file_type=lesson.file_type,
         child_age=child_age,
-        lesson_title=lesson.title
+        lesson_title=lesson.title,
+        image_base64=image_base64,
+        image_media_type=image_media_type,
     )
 
     # Check if analysis already exists
