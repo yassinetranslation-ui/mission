@@ -19,4 +19,4 @@ ENV PORT=10000
 EXPOSE 10000
 
 # Start command
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port \"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port $PORT"]

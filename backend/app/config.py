@@ -1,6 +1,8 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import model_validator
-from typing import Optional
+from typing import Optional, List
+
+DEFAULT_JWT_SECRET = "change-this-to-a-secure-random-string"
 
 class Settings(BaseSettings):
     server_host: str = "0.0.0.0"
@@ -18,10 +20,14 @@ class Settings(BaseSettings):
     db_username: Optional[str] = None
     db_password: Optional[str] = None
 
-    jwt_secret_key: str = "change-this-to-a-secure-random-string"
+    jwt_secret_key: str = DEFAULT_JWT_SECRET
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
     refresh_token_expire_days: int = 7
+
+    # Comma-separated list of allowed CORS origins, or "*" for all.
+    # Example: "https://game.motrjim.com,https://app.motrjim.com"
+    cors_origins: str = "*"
 
     claude_api_key: str = ""
     claude_model: str = "claude-sonnet-4-20250514"
@@ -54,6 +60,17 @@ class Settings(BaseSettings):
                 
             self.database_url = f"{driver}://{user_pass}{host_port}/{self.db_database}"
         return self
+
+    def get_cors_origins(self) -> List[str]:
+        """Parse the comma-separated cors_origins string into a list of origins."""
+        raw = (self.cors_origins or "").strip()
+        if raw == "*" or not raw:
+            return ["*"]
+        return [origin.strip() for origin in raw.split(",") if origin.strip()]
+
+    @property
+    def is_using_default_jwt_secret(self) -> bool:
+        return self.jwt_secret_key == DEFAULT_JWT_SECRET
 
 def get_settings() -> Settings:
     return Settings()
