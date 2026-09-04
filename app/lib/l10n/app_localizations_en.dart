@@ -582,4 +582,156 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get failedCreateProfile => 'Failed to create profile';
+
+  @override
+  String get myChildren => 'My Children';
+
+  @override
+  String get noChildrenTitle => 'No Children Profiles';
+
+  @override
+  String get noChildrenDescription =>
+      'Add a child profile to track their progress and create games.';
+
+  @override
+  String get addNewChild => 'Add New Child';
+
+  @override
+  String get childNameExample => 'e.g. Omar, Sarah';
+
+  @override
+  String get ageExample => 'e.g. 8';
+
+  @override
+  String get validAgeRange => 'Please enter a valid age (1-18)';
+
+  @override
+  String get favoriteSubjects => 'Favorite / Target Subjects';
+
+  @override
+  String get addChildProfile => 'Add Child Profile';
+
+  @override
+  String get failedAddChild => 'Failed to add child';
+
+  @override
+  String get grade => 'Grade';
+
+  @override
+  String get uploadContent => 'Upload Educational Content';
+
+  @override
+  String get uploadContentDesc =>
+      'Upload a textbook page, worksheet, or PDF to generate an interactive mission.';
+
+  @override
+  String get takePickPhoto => 'Take / Pick Photo';
+
+  @override
+  String get photoFormats => 'JPG, PNG, Screenshot';
+
+  @override
+  String get textbookWorksheet => 'Textbook or Worksheet';
+
+  @override
+  String get lessonTitleTopic => 'Lesson Title / Topic';
+
+  @override
+  String get lessonTitleHint => 'e.g. Water Cycle, Fractions';
+
+  @override
+  String get pleaseEnterTitle => 'Please enter a title for the lesson';
+
+  @override
+  String get assignToChild => 'Assign to Child';
+
+  @override
+  String get estimatedDuration => 'Estimated Duration';
+
+  @override
+  String get selectFilePrompt =>
+      'Please select a lesson image or PDF to upload.';
+
+  @override
+  String get failedPickImage => 'Failed to pick image';
+
+  @override
+  String get failedPickDocument => 'Failed to pick document';
+
+  @override
+  String get uploadFailed => 'Upload failed';
+
+  @override
+  String get createEduGame => 'Create My Educational Game';
+
+  @override
+  String get aiMissionGenerator => 'AI Mission Generator';
+
+  @override
+  String get genStep1Title => 'Reading educational content';
+
+  @override
+  String get genStep1Sub => 'Extracting text, diagrams, and structures...';
+
+  @override
+  String get genStep2Title => 'Deconstructing concepts';
+
+  @override
+  String get genStep2Sub => 'Building a pedagogical knowledge graph...';
+
+  @override
+  String get genStep3Title => 'Identifying learning objectives';
+
+  @override
+  String get genStep3Sub => 'Defining mastery goals and target facts...';
+
+  @override
+  String get genStep4Title => 'Designing the mission narrative';
+
+  @override
+  String get genStep4Sub => 'Crafting storyline, characters, and quests...';
+
+  @override
+  String get genStep5Title => 'Synthesizing interactive challenges';
+
+  @override
+  String get genStep5Sub =>
+      'Multiple choice, matching, ordering, and boss battle...';
+
+  @override
+  String get genStep6Title => 'Mission generation complete!';
+
+  @override
+  String get genStep6Sub => 'Ready to play natively in the app!';
+
+  @override
+  String get generationError => 'Generation Encountered an Error';
+
+  @override
+  String get transformingLesson => 'Transforming Lesson Into Game';
+
+  @override
+  String get claudeAnalyzing =>
+      'Claude AI is analyzing educational concepts and building your game mission.';
+
+  @override
+  String get eduLessonGame => 'Educational Lesson Game';
+
+  @override
+  String get missionReady => 'Mission Ready!';
+
+  @override
+  String get extractedKnowledgeMap => 'Extracted Knowledge Map';
+
+  @override
+  String get keyConceptsLabel => 'Key Concepts';
+
+  @override
+  String get learningObjectivesLabel => 'Learning Objectives';
+
+  @override
+  String get previewPlayMission => 'Preview & Play Mission';
+
+  @override
+  String get returnToDashboard => 'Return to Dashboard';
 }

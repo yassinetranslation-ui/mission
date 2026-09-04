@@ -1219,6 +1219,300 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to create profile'**
   String get failedCreateProfile;
+
+  /// No description provided for @myChildren.
+  ///
+  /// In en, this message translates to:
+  /// **'My Children'**
+  String get myChildren;
+
+  /// No description provided for @noChildrenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No Children Profiles'**
+  String get noChildrenTitle;
+
+  /// No description provided for @noChildrenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a child profile to track their progress and create games.'**
+  String get noChildrenDescription;
+
+  /// No description provided for @addNewChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Child'**
+  String get addNewChild;
+
+  /// No description provided for @childNameExample.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Omar, Sarah'**
+  String get childNameExample;
+
+  /// No description provided for @ageExample.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 8'**
+  String get ageExample;
+
+  /// No description provided for @validAgeRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid age (1-18)'**
+  String get validAgeRange;
+
+  /// No description provided for @favoriteSubjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite / Target Subjects'**
+  String get favoriteSubjects;
+
+  /// No description provided for @addChildProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Child Profile'**
+  String get addChildProfile;
+
+  /// No description provided for @failedAddChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add child'**
+  String get failedAddChild;
+
+  /// No description provided for @grade.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade'**
+  String get grade;
+
+  /// No description provided for @uploadContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Educational Content'**
+  String get uploadContent;
+
+  /// No description provided for @uploadContentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload a textbook page, worksheet, or PDF to generate an interactive mission.'**
+  String get uploadContentDesc;
+
+  /// No description provided for @takePickPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take / Pick Photo'**
+  String get takePickPhoto;
+
+  /// No description provided for @photoFormats.
+  ///
+  /// In en, this message translates to:
+  /// **'JPG, PNG, Screenshot'**
+  String get photoFormats;
+
+  /// No description provided for @textbookWorksheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Textbook or Worksheet'**
+  String get textbookWorksheet;
+
+  /// No description provided for @lessonTitleTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson Title / Topic'**
+  String get lessonTitleTopic;
+
+  /// No description provided for @lessonTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Water Cycle, Fractions'**
+  String get lessonTitleHint;
+
+  /// No description provided for @pleaseEnterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a title for the lesson'**
+  String get pleaseEnterTitle;
+
+  /// No description provided for @assignToChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign to Child'**
+  String get assignToChild;
+
+  /// No description provided for @estimatedDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated Duration'**
+  String get estimatedDuration;
+
+  /// No description provided for @selectFilePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a lesson image or PDF to upload.'**
+  String get selectFilePrompt;
+
+  /// No description provided for @failedPickImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to pick image'**
+  String get failedPickImage;
+
+  /// No description provided for @failedPickDocument.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to pick document'**
+  String get failedPickDocument;
+
+  /// No description provided for @uploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload failed'**
+  String get uploadFailed;
+
+  /// No description provided for @createEduGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Create My Educational Game'**
+  String get createEduGame;
+
+  /// No description provided for @aiMissionGenerator.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Mission Generator'**
+  String get aiMissionGenerator;
+
+  /// No description provided for @genStep1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading educational content'**
+  String get genStep1Title;
+
+  /// No description provided for @genStep1Sub.
+  ///
+  /// In en, this message translates to:
+  /// **'Extracting text, diagrams, and structures...'**
+  String get genStep1Sub;
+
+  /// No description provided for @genStep2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Deconstructing concepts'**
+  String get genStep2Title;
+
+  /// No description provided for @genStep2Sub.
+  ///
+  /// In en, this message translates to:
+  /// **'Building a pedagogical knowledge graph...'**
+  String get genStep2Sub;
+
+  /// No description provided for @genStep3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Identifying learning objectives'**
+  String get genStep3Title;
+
+  /// No description provided for @genStep3Sub.
+  ///
+  /// In en, this message translates to:
+  /// **'Defining mastery goals and target facts...'**
+  String get genStep3Sub;
+
+  /// No description provided for @genStep4Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Designing the mission narrative'**
+  String get genStep4Title;
+
+  /// No description provided for @genStep4Sub.
+  ///
+  /// In en, this message translates to:
+  /// **'Crafting storyline, characters, and quests...'**
+  String get genStep4Sub;
+
+  /// No description provided for @genStep5Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Synthesizing interactive challenges'**
+  String get genStep5Title;
+
+  /// No description provided for @genStep5Sub.
+  ///
+  /// In en, this message translates to:
+  /// **'Multiple choice, matching, ordering, and boss battle...'**
+  String get genStep5Sub;
+
+  /// No description provided for @genStep6Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Mission generation complete!'**
+  String get genStep6Title;
+
+  /// No description provided for @genStep6Sub.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to play natively in the app!'**
+  String get genStep6Sub;
+
+  /// No description provided for @generationError.
+  ///
+  /// In en, this message translates to:
+  /// **'Generation Encountered an Error'**
+  String get generationError;
+
+  /// No description provided for @transformingLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Transforming Lesson Into Game'**
+  String get transformingLesson;
+
+  /// No description provided for @claudeAnalyzing.
+  ///
+  /// In en, this message translates to:
+  /// **'Claude AI is analyzing educational concepts and building your game mission.'**
+  String get claudeAnalyzing;
+
+  /// No description provided for @eduLessonGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Educational Lesson Game'**
+  String get eduLessonGame;
+
+  /// No description provided for @missionReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Mission Ready!'**
+  String get missionReady;
+
+  /// No description provided for @extractedKnowledgeMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Extracted Knowledge Map'**
+  String get extractedKnowledgeMap;
+
+  /// No description provided for @keyConceptsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Key Concepts'**
+  String get keyConceptsLabel;
+
+  /// No description provided for @learningObjectivesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning Objectives'**
+  String get learningObjectivesLabel;
+
+  /// No description provided for @previewPlayMission.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview & Play Mission'**
+  String get previewPlayMission;
+
+  /// No description provided for @returnToDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to Dashboard'**
+  String get returnToDashboard;
 }
 
 class _AppLocalizationsDelegate

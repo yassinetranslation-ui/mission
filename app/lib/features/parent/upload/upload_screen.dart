@@ -6,7 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/child_profile.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
 import '../../../widgets/app_input.dart';
@@ -90,7 +92,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to pick image: $e')),
+          SnackBar(content: Text('${AppLocalizations.of(context)!.failedPickImage}: $e')),
         );
       }
     }
@@ -122,9 +124,24 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to pick document: $e')),
+          SnackBar(content: Text('${AppLocalizations.of(context)!.failedPickDocument}: $e')),
         );
       }
+    }
+  }
+
+  String _difficultyLabel(AppLocalizations l, String diff) {
+    switch (diff) {
+      case 'adaptive':
+        return l.adaptive;
+      case 'easy':
+        return l.easy;
+      case 'medium':
+        return l.medium;
+      case 'hard':
+        return l.hard;
+      default:
+        return diff;
     }
   }
 
@@ -135,9 +152,10 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
   }
 
   Future<void> _startUploadAndAnalysis() async {
+    final l = AppLocalizations.of(context)!;
     if (_selectedFile == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select a lesson image or PDF to upload.')),
+        SnackBar(content: Text(l.selectFilePrompt)),
       );
       return;
     }
@@ -160,7 +178,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Upload failed: $e')),
+          SnackBar(content: Text('${l.uploadFailed}: $e')),
         );
       }
     } finally {
@@ -173,10 +191,11 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Turn Lesson Into Game'),
+        title: Text(l.turnLessonIntoGame),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -188,7 +207,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
               children: [
                 // Header Callout
                 Text(
-                  'Upload Educational Content',
+                  l.uploadContent,
                   style: theme.textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.primary,
@@ -196,7 +215,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  'Upload a textbook page, worksheet, or PDF to generate an interactive mission.',
+                  l.uploadContentDesc,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -229,7 +248,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                'Take / Pick Photo',
+                                l.takePickPhoto,
                                 style: theme.textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -237,7 +256,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'JPG, PNG, Screenshot',
+                                l.photoFormats,
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: theme.colorScheme.onSurfaceVariant,
                                 ),
@@ -258,18 +277,18 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                               Container(
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFFF6B35).withValues(alpha: 0.1),
+                                  color: AppColors.childPrimary.withValues(alpha: 0.1),
                                   shape: BoxShape.circle,
                                 ),
                                 child: const Icon(
                                   Icons.picture_as_pdf_outlined,
                                   size: 36,
-                                  color: Color(0xFFFF6B35),
+                                  color: AppColors.childPrimary,
                                 ),
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                'Upload PDF',
+                                l.uploadPdf,
                                 style: theme.textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -277,7 +296,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'Textbook or Worksheet',
+                                l.textbookWorksheet,
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: theme.colorScheme.onSurfaceVariant,
                                 ),
@@ -347,12 +366,12 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                 // Form Details Section
                 AppInput(
                   controller: _titleController,
-                  label: 'Lesson Title / Topic',
-                  hint: 'e.g. Water Cycle in Nature, Fractions',
+                  label: l.lessonTitleTopic,
+                  hint: l.lessonTitleHint,
                   prefixIcon: const Icon(Icons.title_outlined),
                   validator: (val) {
                     if (val == null || val.trim().isEmpty) {
-                      return 'Please enter a title for the lesson';
+                      return l.pleaseEnterTitle;
                     }
                     return null;
                   },
@@ -365,7 +384,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                   DropdownButtonFormField<String>(
                     initialValue: _selectedChildId,
                     decoration: InputDecoration(
-                      labelText: 'Assign to Child',
+                      labelText: l.assignToChild,
                       prefixIcon: const Icon(Icons.face_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -374,7 +393,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                     items: _children.map((child) {
                       return DropdownMenuItem(
                         value: child.id,
-                        child: Text('${child.name} (Age ${child.age})'),
+                        child: Text('${child.name} (${l.ageLabel(child.age)})'),
                       );
                     }).toList(),
                     onChanged: (val) {
@@ -386,7 +405,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
 
                 // Difficulty Selector
                 Text(
-                  'Difficulty Level',
+                  l.difficulty,
                   style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
@@ -398,7 +417,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 4),
                           child: ChoiceChip(
                             label: Text(
-                              diff[0].toUpperCase() + diff.substring(1),
+                              _difficultyLabel(l, diff),
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: _selectedDifficulty == diff ? FontWeight.bold : FontWeight.normal,
@@ -418,7 +437,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
 
                 // Duration Selector
                 Text(
-                  'Estimated Duration',
+                  l.estimatedDuration,
                   style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
@@ -429,7 +448,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 4),
                           child: ChoiceChip(
-                            label: Text('$duration min'),
+                            label: Text('$duration ${l.minutes}'),
                             selected: _selectedDuration == duration,
                             onSelected: (selected) {
                               if (selected) setState(() => _selectedDuration = duration);
@@ -443,13 +462,11 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                 const SizedBox(height: 36),
 
                 // Submit Button
-                if (_isLoading)
-                  const Center(child: CircularProgressIndicator())
-                else
-                  AppButton.game(
-                    label: '🚀 Create My Educational Game',
-                    onPressed: _startUploadAndAnalysis,
-                  ),
+                AppButton.game(
+                  label: '🚀 ${l.createEduGame}',
+                  isLoading: _isLoading,
+                  onPressed: _startUploadAndAnalysis,
+                ),
               ],
             ),
           ),

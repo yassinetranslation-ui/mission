@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/content_analysis.dart';
 import '../../../models/game_specification.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_card.dart';
 
@@ -23,37 +25,13 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
   ContentAnalysis? _analysis;
   GameSpecification? _game;
 
-  final List<Map<String, dynamic>> _steps = [
-    {
-      'icon': Icons.description_outlined,
-      'title': 'Reading educational content',
-      'subtitle': 'Extracting text, diagrams, and structures...',
-    },
-    {
-      'icon': Icons.psychology_outlined,
-      'title': 'Deconstructing concepts',
-      'subtitle': 'Building a pedagogical knowledge graph...',
-    },
-    {
-      'icon': Icons.track_changes_outlined,
-      'title': 'Identifying learning objectives',
-      'subtitle': 'Defining mastery goals and target facts...',
-    },
-    {
-      'icon': Icons.sports_esports_outlined,
-      'title': 'Designing the mission narrative',
-      'subtitle': 'Crafting storyline, characters, and quests...',
-    },
-    {
-      'icon': Icons.extension_outlined,
-      'title': 'Synthesizing interactive challenges',
-      'subtitle': 'Multiple choice, matching, ordering, and boss battle...',
-    },
-    {
-      'icon': Icons.check_circle_outline,
-      'title': 'Mission generation complete!',
-      'subtitle': 'Ready to play natively in the app!',
-    },
+  List<Map<String, dynamic>> _buildSteps(AppLocalizations l) => [
+    {'icon': Icons.description_outlined, 'title': l.genStep1Title, 'subtitle': l.genStep1Sub},
+    {'icon': Icons.psychology_outlined, 'title': l.genStep2Title, 'subtitle': l.genStep2Sub},
+    {'icon': Icons.track_changes_outlined, 'title': l.genStep3Title, 'subtitle': l.genStep3Sub},
+    {'icon': Icons.sports_esports_outlined, 'title': l.genStep4Title, 'subtitle': l.genStep4Sub},
+    {'icon': Icons.extension_outlined, 'title': l.genStep5Title, 'subtitle': l.genStep5Sub},
+    {'icon': Icons.check_circle_outline, 'title': l.genStep6Title, 'subtitle': l.genStep6Sub},
   ];
 
   @override
@@ -115,10 +93,12 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
+    final steps = _buildSteps(l);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AI Mission Generator'),
+        title: Text(l.aiMissionGenerator),
         automaticallyImplyLeading: _isComplete || _errorMessage != null,
       ),
       body: SafeArea(
@@ -133,13 +113,13 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
                   padding: const EdgeInsets.all(24),
                   child: Column(
                     children: [
-                      const Icon(Icons.error_outline, size: 56, color: Colors.red),
+                      const Icon(Icons.error_outline, size: 56, color: AppColors.error),
                       const SizedBox(height: 16),
                       Text(
-                        'Generation Encountered an Error',
+                        l.generationError,
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: Colors.red,
+                          color: AppColors.error,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -153,7 +133,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
                       ),
                       const SizedBox(height: 24),
                       AppButton.primary(
-                        label: 'Try Again',
+                        label: l.tryAgain,
                         onPressed: () {
                           setState(() {
                             _errorMessage = null;
@@ -169,7 +149,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
               ] else if (!_isComplete) ...[
                 // Generation in Progress
                 Text(
-                  'Transforming Lesson Into Game',
+                  l.transformingLesson,
                   style: theme.textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.primary,
@@ -178,7 +158,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Claude AI is analyzing educational concepts and building your game mission.',
+                  l.claudeAnalyzing,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -190,10 +170,10 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
                 ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _steps.length - 1, // Don't show final step until done
+                  itemCount: steps.length - 1, // Don't show final step until done
                   separatorBuilder: (_, __) => const SizedBox(height: 12),
                   itemBuilder: (context, index) {
-                    final step = _steps[index];
+                    final step = steps[index];
                     final isDone = _currentStepIndex > index;
                     final isActive = _currentStepIndex == index;
 
@@ -268,12 +248,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
               ] else ...[
                 // Success State: Knowledge Map Summary
                 AppCard.elevated(
-                  gradient: LinearGradient(
-                    colors: [
-                      theme.colorScheme.primary,
-                      const Color(0xFF8B80F9),
-                    ],
-                  ),
+                  gradient: AppColors.primaryGradient,
                   padding: const EdgeInsets.all(24),
                   child: Column(
                     children: [
@@ -291,7 +266,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Mission Ready!',
+                        l.missionReady,
                         style: theme.textTheme.headlineMedium?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -299,7 +274,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        _game?.title ?? _analysis?.topic ?? 'Educational Lesson Game',
+                        _game?.title ?? _analysis?.topic ?? l.eduLessonGame,
                         style: theme.textTheme.titleMedium?.copyWith(
                           color: Colors.white.withValues(alpha: 0.95),
                           fontWeight: FontWeight.w500,
@@ -320,7 +295,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '🧠 Extracted Knowledge Map',
+                          '🧠 ${l.extractedKnowledgeMap}',
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -336,7 +311,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
 
                         // Concept Chips
                         Text(
-                          'Key Concepts (${_analysis!.concepts.length}):',
+                          '${l.keyConceptsLabel} (${_analysis!.concepts.length}):',
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 8),
@@ -359,7 +334,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
                         // Objectives
                         if (_analysis!.learningObjectives.isNotEmpty) ...[
                           Text(
-                            'Learning Objectives (${_analysis!.learningObjectives.length}):',
+                            '${l.learningObjectivesLabel} (${_analysis!.learningObjectives.length}):',
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 8),
@@ -385,7 +360,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
 
                 // Action Buttons
                 AppButton.game(
-                  label: '🎮 Preview & Play Mission',
+                  label: '🎮 ${l.previewPlayMission}',
                   onPressed: () {
                     if (_game != null) {
                       context.push('/parent/games/${_game!.gameId}/preview');
@@ -396,7 +371,7 @@ class _GenerationScreenState extends ConsumerState<GenerationScreen> {
                 ),
                 const SizedBox(height: 12),
                 AppButton.secondary(
-                  label: 'Return to Dashboard',
+                  label: l.returnToDashboard,
                   onPressed: () {
                     context.go('/parent');
                   },

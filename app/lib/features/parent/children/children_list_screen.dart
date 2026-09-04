@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/child_profile.dart';
 import '../../../widgets/app_card.dart';
 import '../../../widgets/empty_state.dart';
@@ -46,10 +47,11 @@ class _ChildrenListScreenState extends ConsumerState<ChildrenListScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Children'),
+        title: Text(l.myChildren),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
@@ -57,7 +59,7 @@ class _ChildrenListScreenState extends ConsumerState<ChildrenListScreen> {
           _loadChildren();
         },
         icon: const Icon(Icons.add),
-        label: const Text('Add Child'),
+        label: Text(l.addChild),
       ),
       body: RefreshIndicator(
         onRefresh: _loadChildren,
@@ -66,9 +68,9 @@ class _ChildrenListScreenState extends ConsumerState<ChildrenListScreen> {
             : _children.isEmpty
                 ? EmptyState(
                     icon: Icons.people_outline,
-                    title: 'No Children Profiles',
-                    description: 'Add a child profile to track their progress and create games.',
-                    buttonLabel: 'Add Child',
+                    title: l.noChildrenTitle,
+                    description: l.noChildrenDescription,
+                    buttonLabel: l.addChild,
                     onAction: () async {
                       await context.push('/parent/children/add');
                       _loadChildren();
@@ -116,7 +118,7 @@ class _ChildrenListScreenState extends ConsumerState<ChildrenListScreen> {
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        'Age: ${child.age}  •  Grade: ${child.gradeLevel ?? "N/A"}',
+                                        '${l.ageLabel(child.age)}  •  ${l.grade}: ${child.gradeLevel ?? "-"}',
                                         style: theme.textTheme.bodyMedium?.copyWith(
                                           color: theme.colorScheme.onSurfaceVariant,
                                         ),

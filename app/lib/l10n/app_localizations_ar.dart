@@ -578,4 +578,154 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get failedCreateProfile => 'فشل إنشاء الملف';
+
+  @override
+  String get myChildren => 'أبنائي';
+
+  @override
+  String get noChildrenTitle => 'لا توجد ملفات أطفال';
+
+  @override
+  String get noChildrenDescription =>
+      'أضف ملف طفل لتتبّع تقدّمه وإنشاء الألعاب.';
+
+  @override
+  String get addNewChild => 'إضافة طفل جديد';
+
+  @override
+  String get childNameExample => 'مثال: عمر، سارة';
+
+  @override
+  String get ageExample => 'مثال: 8';
+
+  @override
+  String get validAgeRange => 'من فضلك أدخل عمراً صحيحاً (1-18)';
+
+  @override
+  String get favoriteSubjects => 'المواد المفضّلة / المستهدفة';
+
+  @override
+  String get addChildProfile => 'إضافة ملف الطفل';
+
+  @override
+  String get failedAddChild => 'فشل إضافة الطفل';
+
+  @override
+  String get grade => 'المرحلة';
+
+  @override
+  String get uploadContent => 'رفع محتوى تعليمي';
+
+  @override
+  String get uploadContentDesc =>
+      'ارفع صفحة كتاب أو ورقة عمل أو ملف PDF لإنشاء مهمة تفاعلية.';
+
+  @override
+  String get takePickPhoto => 'التقط / اختر صورة';
+
+  @override
+  String get photoFormats => 'JPG، PNG، لقطة شاشة';
+
+  @override
+  String get textbookWorksheet => 'كتاب أو ورقة عمل';
+
+  @override
+  String get lessonTitleTopic => 'عنوان الدرس / الموضوع';
+
+  @override
+  String get lessonTitleHint => 'مثال: دورة الماء، الكسور';
+
+  @override
+  String get pleaseEnterTitle => 'من فضلك أدخل عنواناً للدرس';
+
+  @override
+  String get assignToChild => 'إسناد لطفل';
+
+  @override
+  String get estimatedDuration => 'المدة التقديرية';
+
+  @override
+  String get selectFilePrompt => 'من فضلك اختر صورة أو ملف PDF للدرس.';
+
+  @override
+  String get failedPickImage => 'فشل اختيار الصورة';
+
+  @override
+  String get failedPickDocument => 'فشل اختيار الملف';
+
+  @override
+  String get uploadFailed => 'فشل الرفع';
+
+  @override
+  String get createEduGame => 'اصنع لعبتي التعليمية';
+
+  @override
+  String get aiMissionGenerator => 'مولّد المهمات بالذكاء الاصطناعي';
+
+  @override
+  String get genStep1Title => 'قراءة المحتوى التعليمي';
+
+  @override
+  String get genStep1Sub => 'استخراج النص والرسوم والبُنى...';
+
+  @override
+  String get genStep2Title => 'تفكيك المفاهيم';
+
+  @override
+  String get genStep2Sub => 'بناء خريطة معرفية تعليمية...';
+
+  @override
+  String get genStep3Title => 'تحديد الأهداف التعليمية';
+
+  @override
+  String get genStep3Sub => 'تحديد أهداف الإتقان والحقائق المستهدفة...';
+
+  @override
+  String get genStep4Title => 'تصميم حبكة المهمة';
+
+  @override
+  String get genStep4Sub => 'صياغة القصة والشخصيات والمهام...';
+
+  @override
+  String get genStep5Title => 'بناء التحديات التفاعلية';
+
+  @override
+  String get genStep5Sub => 'اختيار متعدد، مطابقة، ترتيب، ومعركة زعيم...';
+
+  @override
+  String get genStep6Title => 'اكتمل توليد المهمة!';
+
+  @override
+  String get genStep6Sub => 'جاهزة للعب داخل التطبيق!';
+
+  @override
+  String get generationError => 'حدث خطأ أثناء التوليد';
+
+  @override
+  String get transformingLesson => 'تحويل الدرس إلى لعبة';
+
+  @override
+  String get claudeAnalyzing =>
+      'يحلّل الذكاء الاصطناعي المفاهيم ويبني مهمتك التعليمية.';
+
+  @override
+  String get eduLessonGame => 'لعبة درس تعليمي';
+
+  @override
+  String get missionReady => 'المهمة جاهزة!';
+
+  @override
+  String get extractedKnowledgeMap => 'الخريطة المعرفية المستخرجة';
+
+  @override
+  String get keyConceptsLabel => 'المفاهيم الأساسية';
+
+  @override
+  String get learningObjectivesLabel => 'الأهداف التعليمية';
+
+  @override
+  String get previewPlayMission => 'معاينة وتشغيل المهمة';
+
+  @override
+  String get returnToDashboard => 'العودة للوحة التحكم';
 }

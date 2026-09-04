@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/dependency_injection.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../services/child_service.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_input.dart';
@@ -72,8 +73,9 @@ class _AddChildScreenState extends ConsumerState<AddChildScreen> {
       }
     } catch (e) {
       if (mounted) {
+        final l = AppLocalizations.of(context)!;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to add child: $e')),
+          SnackBar(content: Text('${l.failedAddChild}: $e')),
         );
       }
     } finally {
@@ -86,10 +88,11 @@ class _AddChildScreenState extends ConsumerState<AddChildScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add New Child'),
+        title: Text(l.addNewChild),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -113,12 +116,12 @@ class _AddChildScreenState extends ConsumerState<AddChildScreen> {
                 const SizedBox(height: 24),
                 AppInput(
                   controller: _nameController,
-                  label: 'Child\'s Name',
-                  hint: 'e.g. Omar, Sarah',
+                  label: l.childNameLabel,
+                  hint: l.childNameExample,
                   prefixIcon: const Icon(Icons.person_outline),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return 'Please enter a name';
+                      return l.pleaseEnterName;
                     }
                     return null;
                   },
@@ -126,17 +129,17 @@ class _AddChildScreenState extends ConsumerState<AddChildScreen> {
                 const SizedBox(height: 16),
                 AppInput(
                   controller: _ageController,
-                  label: 'Age',
-                  hint: 'e.g. 8',
+                  label: l.childAge,
+                  hint: l.ageExample,
                   keyboardType: TextInputType.number,
                   prefixIcon: const Icon(Icons.cake_outlined),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return 'Please enter an age';
+                      return l.pleaseEnterAge;
                     }
                     final age = int.tryParse(value.trim());
                     if (age == null || age <= 0 || age > 18) {
-                      return 'Please enter a valid age (1-18)';
+                      return l.validAgeRange;
                     }
                     return null;
                   },
@@ -145,7 +148,7 @@ class _AddChildScreenState extends ConsumerState<AddChildScreen> {
                 DropdownButtonFormField<String>(
                   initialValue: _selectedGrade,
                   decoration: InputDecoration(
-                    labelText: 'Grade Level',
+                    labelText: l.gradeLevel,
                     prefixIcon: const Icon(Icons.school_outlined),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -163,7 +166,7 @@ class _AddChildScreenState extends ConsumerState<AddChildScreen> {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Favorite / Target Subjects',
+                  l.favoriteSubjects,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -190,13 +193,11 @@ class _AddChildScreenState extends ConsumerState<AddChildScreen> {
                   }).toList(),
                 ),
                 const SizedBox(height: 36),
-                if (_isLoading)
-                  const Center(child: CircularProgressIndicator())
-                else
-                  AppButton.primary(
-                    label: 'Add Child Profile',
-                    onPressed: _submit,
-                  ),
+                AppButton.primary(
+                  label: l.addChildProfile,
+                  isLoading: _isLoading,
+                  onPressed: _submit,
+                ),
               ],
             ),
           ),
