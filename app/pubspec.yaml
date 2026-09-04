@@ -1,0 +1,49 @@
+name: misson_app
+description: AI Educational Game Generator
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  go_router: ^15.1.2
+  dio: ^5.8.0
+  flutter_secure_storage: ^9.2.4
+  hive_flutter: ^1.1.0
+  hive: ^2.2.3
+  image_picker: ^1.1.2
+  file_picker: ^9.2.1
+  intl: any
+  json_annotation: ^4.9.0
+  uuid: ^4.5.1
+  cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
+  confetti: ^0.8.0
+  percent_indicator: ^4.2.3
+  reorderable_grid: ^1.0.10
+  google_fonts: ^6.2.1
+  path_provider: ^2.1.5
+  connectivity_plus: ^6.1.4
+  lottie: ^3.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.15
+  json_serializable: ^6.9.4
+  riverpod_generator: ^2.6.3
+  mockito: ^5.4.5
+  integration_test:
+    sdk: flutter
+
+flutter:
+  generate: true
+  uses-material-design: true

@@ -1,0 +1,39 @@
+﻿# Environment & Secrets
+.env
+*.env
+backend/.env
+
+# Databases & Local state
+*.db
+*.sqlite
+*.sqlite3
+misson.db
+
+# Python
+__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+*.py[cod]
+*.class
+venv/
+.venv/
+env/
+ENV/
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Flutter / Dart
+app/build/
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+*.apk
+*.aab
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
