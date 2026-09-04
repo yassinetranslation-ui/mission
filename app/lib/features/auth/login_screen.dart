@@ -41,12 +41,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             _passwordController.text,
           );
       if (mounted) {
-        context.go('/');
+        // The router redirect navigates automatically once auth state changes.
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l.loginSuccess),
+            backgroundColor: AppColors.success,
+            duration: const Duration(seconds: 2),
+          ),
+        );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${l.loginFailed}: ${e.toString()}')),
+          SnackBar(
+            content: Text('${l.loginFailed}: ${_friendlyError(e)}'),
+            backgroundColor: AppColors.error,
+          ),
         );
       }
     } finally {
@@ -54,6 +64,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         setState(() => _isLoading = false);
       }
     }
+  }
+
+  String _friendlyError(Object e) {
+    final msg = e.toString();
+    if (msg.contains('401') || msg.toLowerCase().contains('invalid')) {
+      return AppLocalizations.of(context)!.invalidCredentials;
+    }
+    if (msg.toLowerCase().contains('timeout') || msg.toLowerCase().contains('connection')) {
+      return AppLocalizations.of(context)!.connectionError;
+    }
+    return msg;
   }
 
   @override

@@ -1020,4 +1020,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noReportForLesson => 'No report available for this lesson.';
+
+  @override
+  String get loginSuccess => 'Logged in successfully';
+
+  @override
+  String get registerSuccess => 'Account created successfully. Please log in.';
+
+  @override
+  String get invalidCredentials => 'Incorrect email or password';
+
+  @override
+  String get connectionError => 'Connection problem. Please try again.';
 }

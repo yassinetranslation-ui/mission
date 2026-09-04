@@ -17,12 +17,14 @@ class AuthState {
   final bool isAuthenticated;
   final bool hasCompletedOnboarding;
   final bool isLoading;
+  final bool isInitializing;
   final String? error;
 
   const AuthState({
     this.isAuthenticated = false,
     this.hasCompletedOnboarding = false,
     this.isLoading = false,
+    this.isInitializing = true,
     this.error,
   });
 
@@ -30,12 +32,14 @@ class AuthState {
     bool? isAuthenticated,
     bool? hasCompletedOnboarding,
     bool? isLoading,
+    bool? isInitializing,
     String? error,
   }) {
     return AuthState(
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
       hasCompletedOnboarding: hasCompletedOnboarding ?? this.hasCompletedOnboarding,
       isLoading: isLoading ?? this.isLoading,
+      isInitializing: isInitializing ?? this.isInitializing,
       error: error,
     );
   }
@@ -44,19 +48,21 @@ class AuthState {
 class AuthNotifier extends StateNotifier<AuthState> {
   final AuthRepository _repository;
 
-  AuthNotifier(this._repository) : super(const AuthState(isLoading: true)) {
+  AuthNotifier(this._repository) : super(const AuthState(isInitializing: true)) {
     _init();
   }
 
   Future<void> _init() async {
     try {
       await _repository.init();
+      final onboarded = await _repository.isOnboardingComplete();
       state = state.copyWith(
         isAuthenticated: _repository.isAuthenticated,
-        isLoading: false,
+        hasCompletedOnboarding: onboarded,
+        isInitializing: false,
       );
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString());
+      state = state.copyWith(isInitializing: false, error: e.toString());
     }
   }
 
@@ -64,7 +70,12 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = state.copyWith(isLoading: true, error: null);
     try {
       await _repository.login(email, password);
-      state = state.copyWith(isAuthenticated: true, isLoading: false);
+      final onboarded = await _repository.isOnboardingComplete();
+      state = state.copyWith(
+        isAuthenticated: true,
+        hasCompletedOnboarding: onboarded,
+        isLoading: false,
+      );
     } catch (e) {
       state = state.copyWith(isLoading: false, error: e.toString());
       rethrow;
@@ -92,7 +103,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  void completeOnboarding() {
+  Future<void> completeOnboarding() async {
+    await _repository.markOnboardingComplete();
     state = state.copyWith(hasCompletedOnboarding: true);
   }
 }

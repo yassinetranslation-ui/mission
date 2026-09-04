@@ -2053,6 +2053,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No report available for this lesson.'**
   String get noReportForLesson;
+
+  /// No description provided for @loginSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged in successfully'**
+  String get loginSuccess;
+
+  /// No description provided for @registerSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created successfully. Please log in.'**
+  String get registerSuccess;
+
+  /// No description provided for @invalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect email or password'**
+  String get invalidCredentials;
+
+  /// No description provided for @connectionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection problem. Please try again.'**
+  String get connectionError;
 }
 
 class _AppLocalizationsDelegate

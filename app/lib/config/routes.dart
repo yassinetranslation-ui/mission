@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../features/auth/providers/auth_provider.dart';
@@ -26,27 +27,37 @@ import '../features/child/profile/child_profile_screen.dart';
 import '../features/games/game_play_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
-  final authState = ref.watch(authProvider);
+  // Build the router ONCE. Re-evaluate redirects on auth changes via a
+  // refreshListenable instead of recreating the whole GoRouter (which would
+  // reset navigation to the initial route and break post-login navigation).
+  final refresh = ValueNotifier<int>(0);
+  final sub = ref.listen<AuthState>(authProvider, (_, __) => refresh.value++);
+  ref.onDispose(() {
+    sub.close();
+    refresh.dispose();
+  });
 
   return GoRouter(
     initialLocation: '/',
+    refreshListenable: refresh,
     redirect: (context, state) {
-      final isAuthRoute = state.matchedLocation == '/login' || state.matchedLocation == '/register';
-      final isSplash = state.matchedLocation == '/';
-      
-      if (isSplash) return null;
+      final auth = ref.read(authProvider);
+      final loc = state.matchedLocation;
+      final onSplash = loc == '/';
+      final onAuthRoute = loc == '/login' || loc == '/register';
+      final onOnboarding = loc.startsWith('/onboarding');
 
-      if (!authState.isAuthenticated && !isAuthRoute) {
-        return '/login';
-      }
-      
-      if (authState.isAuthenticated && !authState.hasCompletedOnboarding && !state.matchedLocation.startsWith('/onboarding')) {
-        return '/onboarding';
-      }
+      // While auth is initializing, keep the splash visible.
+      if (auth.isInitializing) return onSplash ? null : '/';
 
-      if (authState.isAuthenticated && authState.hasCompletedOnboarding && isAuthRoute) {
-        return '/parent'; 
-      }
+      // Not signed in: only auth routes are allowed.
+      if (!auth.isAuthenticated) return onAuthRoute ? null : '/login';
+
+      // Signed in but not onboarded: force onboarding.
+      if (!auth.hasCompletedOnboarding) return onOnboarding ? null : '/onboarding';
+
+      // Signed in and onboarded: keep out of splash/auth screens.
+      if (onSplash || onAuthRoute) return '/parent';
 
       return null;
     },

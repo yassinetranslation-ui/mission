@@ -353,5 +353,9 @@
   "weaknesses": "مجالات التحسين",
   "recommendations": "التوصيات",
   "student": "الطالب",
-  "noReportForLesson": "لا يوجد تقرير لهذا الدرس."
+  "noReportForLesson": "لا يوجد تقرير لهذا الدرس.",
+  "loginSuccess": "تم تسجيل الدخول بنجاح",
+  "registerSuccess": "تم إنشاء الحساب بنجاح. سجّل الدخول الآن.",
+  "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+  "connectionError": "مشكلة في الاتصال. حاول مرة أخرى."
 }

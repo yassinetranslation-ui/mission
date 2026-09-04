@@ -1013,4 +1013,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noReportForLesson => 'لا يوجد تقرير لهذا الدرس.';
+
+  @override
+  String get loginSuccess => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get registerSuccess => 'تم إنشاء الحساب بنجاح. سجّل الدخول الآن.';
+
+  @override
+  String get invalidCredentials => 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+
+  @override
+  String get connectionError => 'مشكلة في الاتصال. حاول مرة أخرى.';
 }

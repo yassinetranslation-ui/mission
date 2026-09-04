@@ -48,4 +48,8 @@ class AuthRepository {
       _currentUser = null;
     }
   }
+
+  Future<bool> isOnboardingComplete() => _secureStorage.isOnboardingComplete();
+
+  Future<void> markOnboardingComplete() => _secureStorage.setOnboardingComplete(true);
 }

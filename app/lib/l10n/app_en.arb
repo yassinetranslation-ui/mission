@@ -360,5 +360,9 @@
   "weaknesses": "Areas to Improve",
   "recommendations": "Recommendations",
   "student": "Student",
-  "noReportForLesson": "No report available for this lesson."
+  "noReportForLesson": "No report available for this lesson.",
+  "loginSuccess": "Logged in successfully",
+  "registerSuccess": "Account created successfully. Please log in.",
+  "invalidCredentials": "Incorrect email or password",
+  "connectionError": "Connection problem. Please try again."
 }

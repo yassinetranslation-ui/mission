@@ -43,14 +43,20 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           );
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l.createAccount)),
+          SnackBar(
+            content: Text(l.registerSuccess),
+            backgroundColor: AppColors.success,
+          ),
         );
         context.go('/login');
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${l.registerFailed}: ${e.toString()}')),
+          SnackBar(
+            content: Text('${l.registerFailed}: ${e.toString()}'),
+            backgroundColor: AppColors.error,
+          ),
         );
       }
     } finally {

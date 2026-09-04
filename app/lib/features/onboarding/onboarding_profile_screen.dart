@@ -54,11 +54,12 @@ class _OnboardingProfileScreenState extends ConsumerState<OnboardingProfileScree
         ),
       );
 
-      // Mark onboarding as completed
-      ref.read(authProvider.notifier).completeOnboarding();
-      
+      // Mark onboarding as completed (persisted) before navigating so the
+      // router redirect sees the updated flag.
+      await ref.read(authProvider.notifier).completeOnboarding();
+
       if (mounted) {
-        context.go('/parent'); // Or wherever the parent home is
+        context.go('/parent');
       }
     } catch (e) {
       if (mounted) {

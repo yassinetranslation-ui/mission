@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import '../auth/providers/auth_provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 
@@ -35,24 +33,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerPr
     );
 
     _controller.forward();
-    _checkNavigation();
-  }
-
-  Future<void> _checkNavigation() async {
-    await Future.delayed(const Duration(milliseconds: 2000));
-    if (!mounted) return;
-
-    final authState = ref.read(authProvider);
-
-    if (authState.isAuthenticated) {
-      if (authState.hasCompletedOnboarding) {
-        context.go('/parent');
-      } else {
-        context.go('/onboarding');
-      }
-    } else {
-      context.go('/login');
-    }
+    // Navigation away from the splash is handled reactively by the router's
+    // redirect once auth finishes initializing.
   }
 
   @override

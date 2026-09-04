@@ -7,6 +7,7 @@ class SecureStorage {
 
   static const String _tokenKey = 'auth_token';
   static const String _refreshTokenKey = 'refresh_token';
+  static const String _onboardingKey = 'onboarding_complete';
 
   Future<void> saveToken(String token) async {
     await _storage.write(key: _tokenKey, value: token);
@@ -26,6 +27,14 @@ class SecureStorage {
 
   Future<String?> getRefreshToken() async {
     return await _storage.read(key: _refreshTokenKey);
+  }
+
+  Future<void> setOnboardingComplete(bool value) async {
+    await _storage.write(key: _onboardingKey, value: value ? 'true' : 'false');
+  }
+
+  Future<bool> isOnboardingComplete() async {
+    return (await _storage.read(key: _onboardingKey)) == 'true';
   }
 
   Future<void> clearAll() async {
